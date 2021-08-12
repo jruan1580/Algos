@@ -1,5 +1,6 @@
 ﻿using Algorithms.Strings;
 using System;
+using System.Collections.Generic;
 
 namespace Algorithms
 {
@@ -39,6 +40,72 @@ namespace Algorithms
             Console.WriteLine(reverseStr.ReverseStrIteratively("apple"));
             Console.WriteLine(reverseStr.ReverseStrRecursively("a"));
             Console.WriteLine(reverseStr.ReverseStrRecursively("apple"));
+
+            //easy
+            Console.WriteLine("----------------------------------------");
+            var dupicateChars = new DuplicateCharacters();
+            dupicateChars.PrintDuplicateChars("aab");
+            dupicateChars.PrintDuplicateChars("aabbcc");
+            Console.WriteLine(dupicateChars.RemoveDuplicates("aab"));
+            Console.WriteLine(dupicateChars.RemoveDuplicates("bananas"));
+            Console.WriteLine(dupicateChars.FindHighestDuplicateChar("aaaaaabbc"));
+            Console.WriteLine(dupicateChars.FindHighestDuplicateChar("abc"));
+
+            //easy
+            Console.WriteLine("----------------------------------------");
+            var strToInt = new NumericStrToInt();
+            Console.WriteLine(strToInt.ConvertStringToInt("123"));
+            Console.WriteLine(strToInt.ConvertStringToInt("1"));
+            Console.WriteLine(strToInt.ConvertStringToInt("0"));
+
+            try
+            {
+                strToInt.ConvertStringToInt("122a");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            //easy but tedious
+            Console.WriteLine("----------------------------------------");
+            var replaceCharInStr = new ReplaceCharacterInString();
+            Console.WriteLine(replaceCharInStr.ReplaceCharInStrWithTarget("this is sparta!!!", ' ', "%20"));
+            Console.WriteLine(replaceCharInStr.ReplaceCharInStrWithTarget("this is sparta!!!", ' ', "|"));
+
+            //hard
+            Console.WriteLine("----------------------------------------");
+            var permute = new Permutation();
+            permute.Permute("abc", string.Empty);
+            permute.Permute("abcd", string.Empty);
+            permute.Permute("aa", string.Empty);
+            permute.DistinctPermute("aa", string.Empty, new Dictionary<string, bool>());
+            permute.DistinctPermute("aba", string.Empty, new Dictionary<string, bool>());
+
+            //easy
+            Console.WriteLine("----------------------------------------");
+            var palindrome = new Palindrome();
+            Console.WriteLine(palindrome.IsPalindome("aba"));
+            Console.WriteLine(palindrome.IsPalindome("radar"));
+            Console.WriteLine(palindrome.IsPalindome("java"));
+            Console.WriteLine(palindrome.IsPalindome("madam"));
+
+            //easy
+            Console.WriteLine("----------------------------------------");
+            var shuffle = new StringShuffle();
+            Console.WriteLine(shuffle.IsShuffle("abc", "def", "adbecf"));
+            Console.WriteLine(shuffle.IsShuffle("abc", "def", "abcdef"));
+            Console.WriteLine(shuffle.IsShuffle("abc", "def", "abdecf"));
+            Console.WriteLine(shuffle.IsShuffle("abc", "def", "dabecf"));
+            Console.WriteLine(shuffle.IsShuffle("abc", "def", "asg"));
+            Console.WriteLine(shuffle.IsShuffle("abc", "def", "adfcbe"));
+
+            //easy
+            Console.WriteLine("----------------------------------------");
+            var rotation = new StringRotation();
+            Console.WriteLine(rotation.IsRotation("IndiaUSAEngland", "USAEnglandIndia"));
+            Console.WriteLine(rotation.IsRotation("IndiaUSAEngland", "IndiaEnglandUSA"));
+
             Console.ReadLine();
         }
     }

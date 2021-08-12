@@ -36,8 +36,8 @@ namespace Algorithms.Strings
                 return str;
             }
 
-            var firstChar = str[0];
-            return ReverseStrRecursively(str.Substring(1)) + firstChar;
+            var currentChar = str[0];
+            return ReverseStrRecursively(str.Substring(1)) + currentChar;
         }
     }
 }
