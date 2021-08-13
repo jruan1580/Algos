@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Algorithms.Strings
+namespace Strings.Problems
 {
     public class DuplicateCharacters
     {

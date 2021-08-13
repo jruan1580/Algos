@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Algorithms.Strings
+namespace Strings.Problems
 {
     public class FirstNonRepeatChar
     {

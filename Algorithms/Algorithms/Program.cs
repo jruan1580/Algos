@@ -1,8 +1,8 @@
-﻿using Algorithms.Strings;
+﻿using Strings.Problems;
 using System;
 using System.Collections.Generic;
 
-namespace Algorithms
+namespace Strings
 {
     class Program
     {
