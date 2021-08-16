@@ -60,5 +60,39 @@ namespace Arrays.Problems
                 Console.WriteLine(map.Key);
             }
         }
+
+        public int FindUniqueElementInDuplicateArray(int [] nums)
+        {
+            //tracks count
+            var tracker = new Dictionary<int, int>();
+            foreach(var num in nums)
+            {
+                //never seen number, add it with count of 1
+                if (!tracker.ContainsKey(num))
+                {
+                    tracker.Add(num, 1);
+                }
+                else
+                {
+                    //seen it before, increment count
+                    tracker[num]++;
+                }
+            }
+
+            foreach(var numToCount in tracker)
+            {
+                //not unique, duplicate
+                if (numToCount.Value > 1)
+                {
+                    continue;
+                }
+
+                //found unique, with value not greater than 1, return it
+                return numToCount.Key;
+            }
+
+            //never found a unique or else would have been returned.
+            throw new Exception("no unique found");
+        }
     }
 }
