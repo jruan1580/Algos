@@ -45,5 +45,49 @@ namespace Arrays.Problems
 
             Console.WriteLine($"Min: {min} | Max: {max}");
         }
+
+        public void PrintTopTwoNumberWithoutSorting(int [] arr)
+        {
+            int max1 = int.MinValue;
+            int max2 = int.MinValue;
+
+            foreach (var num in arr)
+            {
+                //num less than both max1 and max2.
+                if (num < max1 && num < max2)
+                {
+                    continue;
+                }
+
+                //num is greater than both max1 and max2, assign to max1
+                if (num > max1 && num > max2)
+                {
+                    max1 = num;
+                    continue;
+                }
+
+                //num is less than max1 but greater than max2
+                if (num < max1 && num > max2)
+                {
+                    max2 = num;
+                    continue;
+                }
+            }
+
+            Console.WriteLine($"Max1: {max1}, Max2: {max2}");
+        }
+
+        private int FindSmallestPositiveNumberThatCannotBeSum(int [] arr)
+        {
+            var smallestPosNum = 1;
+            var index = 0;
+            while (index < arr.Length && arr[index] <= smallestPosNum)
+            {
+                smallestPosNum += arr[index];
+                index++;
+            }
+
+            return smallestPosNum;
+        }
     }
 }

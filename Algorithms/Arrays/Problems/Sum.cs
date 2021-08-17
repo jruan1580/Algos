@@ -56,5 +56,15 @@ namespace Arrays.Problems
                 }
             }
         }
+
+        public bool HasSubArrySumEqualToZeroBruteForce(int [] arr)
+        {
+            return false;
+        }
+
+        public bool HasSubArrySumEqualToZeroNotBruteForce(int[] arr)
+        {
+            return false;
+        }
     }
 }
