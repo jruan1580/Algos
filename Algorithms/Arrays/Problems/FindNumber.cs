@@ -77,7 +77,7 @@ namespace Arrays.Problems
             Console.WriteLine($"Max1: {max1}, Max2: {max2}");
         }
 
-        private int FindSmallestPositiveNumberThatCannotBeSum(int [] arr)
+        public int FindSmallestPositiveNumberThatCannotBeSum(int [] arr)
         {
             var smallestPosNum = 1;
             var index = 0;
@@ -88,6 +88,35 @@ namespace Arrays.Problems
             }
 
             return smallestPosNum;
+        }
+
+        public void PrintNumAppearingMoreThanNOverKTimes(int [] arr, int k)
+        {
+            var n = 0;
+            var tracker = new Dictionary<int, int>();
+            foreach(var num in arr)
+            {
+                n++; //find n which is length of array
+                if (!tracker.ContainsKey(num))
+                {
+                    tracker[num] += 1;
+                }
+                else
+                {
+                    tracker.Add(num, 1);
+                }
+            }
+
+            var occurences = (n / k);
+            foreach(var numToCount in tracker)
+            {
+                if (numToCount.Value < occurences)
+                {
+                    continue;
+                }
+
+                Console.WriteLine(numToCount.Key);
+            }
         }
     }
 }

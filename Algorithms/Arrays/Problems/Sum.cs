@@ -59,11 +59,49 @@ namespace Arrays.Problems
 
         public bool HasSubArrySumEqualToZeroBruteForce(int [] arr)
         {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                //found subarray of 0
+                if (arr[i] == 0)
+                {
+                    return true;
+                }
+
+                var zeroSum = arr[i];
+                for (int j = i + 1; j < arr.Length; j++)
+                {
+                    //found sub array of 0
+                    if (arr[j] == 0)
+                    {
+                        return true;
+                    }
+
+                    zeroSum += arr[j];
+                    if (zeroSum == 0)
+                    {
+                        return true;
+                    }
+                }
+            }
             return false;
         }
 
         public bool HasSubArrySumEqualToZeroNotBruteForce(int[] arr)
         {
+            var tracker = new Dictionary<int, bool>();
+            var res = 0;
+
+            foreach(var num in arr)
+            {
+                res += num;
+                if (num == 0 || res == 0 || tracker.ContainsKey(res))
+                {
+                    return true;
+                }
+
+                tracker.Add(res, true);
+            }
+
             return false;
         }
     }

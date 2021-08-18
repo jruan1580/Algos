@@ -94,5 +94,33 @@ namespace Arrays.Problems
             //never found a unique or else would have been returned.
             throw new Exception("no unique found");
         }
+
+        public int RemoveDuplicateInPlaceOfSortedArrAndReturnNewLength(int? [] sortedArr)
+        {
+            //nothing in array
+            if (sortedArr.Length <= 0)
+            {
+                return 0;
+            }
+
+            var currentNum = sortedArr[0];
+            var newLengthWithoutDups = 1; //including first element we use as current num
+
+            for (int i = 1; i < sortedArr.Length; i++)
+            {
+                //duplicate, replace with null to imitate removing
+                if (sortedArr[i] == currentNum)
+                {
+                    sortedArr[i] = null;
+                    continue;
+                }
+
+                //not a duplicate, update length and set current num as this new non dup num
+                currentNum = sortedArr[i];
+                newLengthWithoutDups++;
+            }
+
+            return newLengthWithoutDups;
+        }
     }
 }
