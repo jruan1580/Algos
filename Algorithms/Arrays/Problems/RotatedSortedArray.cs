@@ -14,7 +14,7 @@
                 return rotatedSortedArray[low];
             }
 
-            var mid = (low + high) / 2;
+            var mid = (low + (high - low)) / 2;
             //no left side, look right
             if ((mid - 1) < 0)
             {
