@@ -104,5 +104,37 @@ namespace Arrays.Problems
 
             return false;
         }
+
+        public int MaximumSumOfAllRotations(int [] arr)
+        {
+            var sumOfArr = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                sumOfArr += arr[i];
+            }
+
+            var currSum = 0;
+            for(int i = 0; i < arr.Length; i++)
+            {
+                currSum += (i * arr[i]);
+            }
+
+            var currMax = currSum;
+
+            //formula -> currSum - (SumOfArr - arr[i -1]) + (arr[i-1]*arr.Length-1)
+            for (int i = 1; i < arr.Length; i++)
+            {
+                var nextSum = currSum - (sumOfArr - arr[i - 1]) + (arr[i - 1] * (arr.Length - 1));
+
+                if (nextSum > currMax)
+                {
+                    currMax = nextSum;
+                }
+
+                currSum = nextSum;
+            }
+
+            return currMax;
+        }
     }
 }
