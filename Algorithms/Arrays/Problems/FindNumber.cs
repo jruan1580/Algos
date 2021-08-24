@@ -118,5 +118,70 @@ namespace Arrays.Problems
                 Console.WriteLine(numToCount.Key);
             }
         }
+
+        public int FindSmallestMissingPositiveWithExtraSpace(int [] arr)
+        {
+            var tracker = new Dictionary<int, bool>();
+
+            foreach (var num in arr)
+            {
+                if (num <= 0)
+                {
+                    continue;
+                }
+
+                //already tracked in
+                if (tracker.ContainsKey(num))
+                {
+                    continue;
+                }                
+                
+                tracker.Add(num, true);            
+            }
+
+            var smallestPos = 1;
+            while (tracker.ContainsKey(smallestPos))
+            {
+                smallestPos++;
+            }
+
+            return smallestPos;
+        }
+
+        public int FindSmallestMissingPositiveWithoutExtraSpace(int [] arr)
+        {
+            //segregate pos and negatives
+            var pos = 0;            
+
+            for (var neg = 0; neg < arr.Length; neg++)
+            {
+                if (arr[neg] <= 0)
+                {
+                    var tmp = arr[pos];
+                    arr[pos] = arr[neg];
+                    arr[neg] = tmp;
+                    pos++;
+                }
+            }
+
+            var startOfPos = pos;
+            for (var i = startOfPos; i < arr.Length; i++)
+            {
+                if ((Math.Abs(arr[i]) - 1) + startOfPos < arr.Length && arr[(Math.Abs(arr[i]) - 1) + startOfPos] > 0)
+                {
+                    arr[(Math.Abs(arr[i]) - 1) + startOfPos] = (arr[(Math.Abs(arr[i]) - 1) + startOfPos] * -1);
+                }
+            }
+
+            for (var i = startOfPos; i < arr.Length; i++)
+            {
+                if (arr[i] > 0)
+                {
+                    return i - startOfPos + 1;
+                }
+            }
+
+            return (arr.Length - startOfPos) + 1;
+        }
     }
 }
