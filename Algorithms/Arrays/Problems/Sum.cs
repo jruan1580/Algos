@@ -136,5 +136,51 @@ namespace Arrays.Problems
 
             return currMax;
         }
+
+        public int MaximumSumPath(int [] arr1, int [] arr2)
+        {
+            var sum1 = 0;
+            var sum2 = 0;
+            var result = 0;
+
+            var i = 0; //tracks arr1
+            var j = 0; //tracks arr2
+
+            while(i < arr1.Length && j < arr2.Length)
+            {
+                if (arr2[i] < arr2[j])
+                {
+                    sum1 += arr1[i];
+                    i++;
+                }
+                else if(arr2[i] > arr2[j])
+                {
+                    sum2 += arr2[j];
+                    j++;
+                }
+                else
+                {
+                    result += (Math.Max(sum1, sum2)) + arr2[i];
+                    sum1 = 0;
+                    sum2 = 0;
+                    i++;
+                    j++;
+                }
+            }
+
+            while (i < arr1.Length)
+            {
+                sum1 += arr1[i];
+                i++;
+            }
+
+            while (j < arr2.Length)
+            {
+                sum2 += arr2[j];
+                j++;
+            }
+
+            return result + Math.Max(sum1, sum2);
+        }
     }
 }

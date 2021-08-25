@@ -183,5 +183,31 @@ namespace Arrays.Problems
 
             return (arr.Length - startOfPos) + 1;
         }
+
+        public void PrintMissingAndRepeat(int [] arr)
+        {
+            for (var i = 0; i < arr.Length; i++)
+            {
+                //seen it before, this is repeat/
+                if (arr[Math.Abs(arr[i]) - 1] < 0)
+                {
+                    Console.WriteLine($"Repeated: {arr[i]}");
+                    continue;
+                }
+
+                //set index to 0
+                arr[Math.Abs(arr[i]) - 1] = (arr[Math.Abs(arr[i]) - 1] * -1);
+            }
+
+            for(var i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] < 0)
+                {
+                    continue;
+                }
+
+                Console.WriteLine($"Missing: {i + 1}");
+            }
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Arrays.Problems
 {
@@ -44,7 +43,8 @@ namespace Arrays.Problems
                     {
                         var tmp = arr[i];
                         arr[i] = arr[i + 1];
-                        arr
+                        arr[i + 1] = tmp;
+                    }
                 }
             }
         }
