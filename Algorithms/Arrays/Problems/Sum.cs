@@ -182,5 +182,38 @@ namespace Arrays.Problems
 
             return result + Math.Max(sum1, sum2);
         }
+
+        public void PrintPairClosestToSum(int [] arr, int target)
+        {
+            var start = 0;
+            var end = arr.Length - 1;
+
+            var minDiffSoFar = int.MaxValue;
+            var firstMinPair = int.MaxValue;
+            var secMinPair = int.MaxValue;
+
+            while(start < end && ((arr[end] + arr[start]) <= target))
+            {
+                //sum is less than target
+                if (arr[end] + arr[start] <= target)
+                {
+                    //check to see if smaller than curr min, if so, new pair of closest to x
+                    if (minDiffSoFar < (target - (arr[end] + arr[start])))
+                    {
+                        firstMinPair = arr[start];
+                        secMinPair = arr[end];
+                    }                    
+                }               
+            }
+
+            if (firstMinPair == int.MaxValue && secMinPair == int.MaxValue)
+            {
+                Console.WriteLine("None");
+            }
+            else
+            {
+                Console.WriteLine($"{firstMinPair},{secMinPair}");
+            }
+        }
     }
 }
