@@ -44,7 +44,7 @@ namespace Arrays.Problems
                 //current number is pos
                 else if (num > 0)
                 {
-                    maxHere *= maxHere;
+                    maxHere *= num;
                     minHere = Math.Min((minHere * num), 1); //minHere can either be 1 or some negative. take the smallest to keep track of min
                 }
                 //neg number

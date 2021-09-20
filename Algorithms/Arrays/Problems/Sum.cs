@@ -192,17 +192,27 @@ namespace Arrays.Problems
             var firstMinPair = int.MaxValue;
             var secMinPair = int.MaxValue;
 
-            while(start < end && ((arr[end] + arr[start]) <= target))
+            while(start < end)
             {
                 //sum is less than target
                 if (arr[end] + arr[start] <= target)
                 {
                     //check to see if smaller than curr min, if so, new pair of closest to x
-                    if (minDiffSoFar < (target - (arr[end] + arr[start])))
+                    if ((target - (arr[end] + arr[start])) < minDiffSoFar)
                     {
                         firstMinPair = arr[start];
                         secMinPair = arr[end];
-                    }                    
+                        minDiffSoFar = target - (arr[end] + arr[start]);
+                    }                
+                    
+                    if (arr[start] + arr[end] > target)
+                    {
+                        end--;
+                    }
+                    else
+                    {
+                        start++;
+                    }
                 }               
             }
 
