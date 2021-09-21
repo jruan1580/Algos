@@ -55,10 +55,10 @@ namespace Arrays.Problems
 
             /* Initialize all values from 1 */
             for (int i = 0; i < n; i++)
-                las[i, 0] = las[i, 1] = 1;
-
-            // Initialize result
-            int res = 1;
+            {
+                las[i, 0] = 1;
+                las[i, 1] = 1;
+            }
 
             /* Compute values in
             bottom up manner */
@@ -70,26 +70,21 @@ namespace Arrays.Problems
                 {
                     // If arr[i] is greater, then
                     // check with las[j][1]
-                    if (arr[j] < arr[i] &&
-                        las[i, 0] < las[j, 1] + 1)
-                        las[i, 0] = las[j, 1] + 1;
+                    if (arr[j] < arr[i])
+                    {
+                        las[i, 0] = Math.Max(las[i, 0], las[j, 1] + 1);
+                    }
 
                     // If arr[i] is smaller, then
                     // check with las[j][0]
-                    if (arr[j] > arr[i] &&
-                    las[i, 1] < las[j, 0] + 1)
-                        las[i, 1] = las[j, 0] + 1;
-                }
-
-                /* Pick maximum of both
-                values at index i */
-                if (res < Math.Max(las[i, 0],
-                                   las[i, 1]))
-                    res = Math.Max(las[i, 0],
-                                   las[i, 1]);
+                    if (arr[j] > arr[i]) 
+                    {
+                        las[i, 1] = Math.Max(las[i, 1], las[j, 0] + 1);
+                    }                    
+                }              
             }
 
-            return res;
+            return Math.Max(las[n - 1, 0], las[n - 1, 1]);
         }
     }
 }

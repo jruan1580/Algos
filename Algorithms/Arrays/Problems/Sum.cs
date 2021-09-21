@@ -225,5 +225,36 @@ namespace Arrays.Problems
                 Console.WriteLine($"{firstMinPair},{secMinPair}");
             }
         }
+
+        /// <summary>
+        /// Input: arr[] = {1, 4, 20, 3, 10, 5}, sum = 33
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="target"></param>
+        public bool SubarraySum(int [] arr, int target)
+        {
+            var start = 0;
+            var currSum = 0;
+
+            for(var i = 0; i < arr.Length; i++)
+            {
+                currSum += arr[i];
+
+                while(currSum > target && start < i)
+                {
+                    currSum -= arr[start];
+                    start++;
+                }
+
+                if (currSum == target)
+                {
+                    Console.WriteLine($"Found sum from index: {start} to index: {i}");
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
