@@ -10,6 +10,10 @@ namespace Strings
         {
             ////easy
             //var anagram = new Anagrams();
+            //Console.WriteLine(anagram.IsKAnagram("fodr", "gork", 2));
+            //Console.WriteLine(anagram.IsKAnagram("anagram", "grammar", 3));
+            //Console.WriteLine(anagram.IsKAnagram("geeks", "eggkf", 1));
+            //Console.WriteLine(anagram.IsKAnagram("geeks", "eggkf", 2));
             //Console.WriteLine(anagram.IsAnagram("army", "mary"));
             //Console.WriteLine(anagram.IsAnagramBySort("army", "mary"));
             //Console.WriteLine(anagram.IsAnagram("asgf", "as"));
@@ -100,18 +104,32 @@ namespace Strings
 
             ////easy
             //Console.WriteLine("----------------------------------------");
-            //var rotation = new StringRotation();
+            var rotation = new StringRotation();
             //Console.WriteLine(rotation.IsRotation("IndiaUSAEngland", "USAEnglandIndia"));
             //Console.WriteLine(rotation.IsRotation("IndiaUSAEngland", "IndiaEnglandUSA"));
+            Console.WriteLine(rotation.IsTwoRotation("amazon", "azonam"));
+            Console.WriteLine(rotation.IsTwoRotation("amazon", "onamaz"));
+            Console.WriteLine(rotation.IsTwoRotation("amazon", "zonama"));
 
             //var stringMath = new StringMath();
             //Console.WriteLine(stringMath.IsDivisibleBy7("100000000000"));
             //Console.WriteLine(stringMath.IsDivisibleBy7("214"));
 
+            //var bracket = new Brackets();
+            //Console.WriteLine(bracket.EqualBrackets("{}{}{"));
+            //Console.WriteLine(bracket.EqualBrackets("{}{}"));
 
-            var bracket = new Brackets();
-            Console.WriteLine(bracket.EqualBrackets("{}{}{"));
-            Console.WriteLine(bracket.EqualBrackets("{}{}"));
+            //var iso = new Isomorphic();
+
+            //Console.WriteLine(iso.IsIsomorphic("aab", "xxy"));
+            //Console.WriteLine(iso.IsIsomorphic("aab", "xyz"));
+
+            //var pan = new Panagram();
+            //Console.WriteLine(pan.IsPanagram("The quick brown fox jumps over the lazy dog"));
+            //Console.WriteLine(pan.IsPanagram("The quick brown fox jumps over the dog"));
+
+
+
             Console.ReadLine();
         }
     }

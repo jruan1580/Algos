@@ -78,5 +78,51 @@ namespace Strings.Problems
 
             return true;
         }
+
+        public bool IsKAnagram(string str1, string str2, int k)
+        {
+            if (str1.Length != str2.Length)
+            {
+                return false;
+            }
+
+            var tracker = new Dictionary<char, int>();
+
+            var charArr1 = str1.ToCharArray();
+            foreach(var c in charArr1)
+            {
+                if (tracker.ContainsKey(c))
+                {
+                    tracker[c] += 1;
+                }
+                else
+                {
+                    tracker.Add(c, 1);
+                }
+            }
+
+            var charArr2 = str2.ToCharArray();
+            //remove chars from tracker
+            foreach(var c in charArr2)
+            {
+                if (!tracker.ContainsKey(c))
+                {
+                    continue;
+                }
+
+                tracker[c] -= 1;
+            }
+
+            var numOfCharsRemaining = 0; //num of chars not accounted for in str1 after removing similar chars from str2
+            foreach (var map in tracker)
+            {
+                if (map.Value > 0)
+                {
+                    numOfCharsRemaining += map.Value;
+                }
+            }
+
+            return numOfCharsRemaining <= k;
+        }
     }
 }
