@@ -104,12 +104,12 @@ namespace Strings
 
             ////easy
             //Console.WriteLine("----------------------------------------");
-            var rotation = new StringRotation();
+            //var rotation = new StringRotation();
             //Console.WriteLine(rotation.IsRotation("IndiaUSAEngland", "USAEnglandIndia"));
             //Console.WriteLine(rotation.IsRotation("IndiaUSAEngland", "IndiaEnglandUSA"));
-            Console.WriteLine(rotation.IsTwoRotation("amazon", "azonam"));
-            Console.WriteLine(rotation.IsTwoRotation("amazon", "onamaz"));
-            Console.WriteLine(rotation.IsTwoRotation("amazon", "zonama"));
+            //Console.WriteLine(rotation.IsTwoRotation("amazon", "azonam"));
+            //Console.WriteLine(rotation.IsTwoRotation("amazon", "onamaz"));
+            //Console.WriteLine(rotation.IsTwoRotation("amazon", "zonama"));
 
             //var stringMath = new StringMath();
             //Console.WriteLine(stringMath.IsDivisibleBy7("100000000000"));
@@ -128,9 +128,24 @@ namespace Strings
             //Console.WriteLine(pan.IsPanagram("The quick brown fox jumps over the lazy dog"));
             //Console.WriteLine(pan.IsPanagram("The quick brown fox jumps over the dog"));
 
+            //var zot = new ZeroOnesTwos();
+            //Console.WriteLine(zot.EqualZerosOnesTwos("0102010"));
+            //Console.WriteLine(zot.EqualZerosOnesTwos("102100211"));
+            //Console.ReadLine();
 
+            //var sub = new Substring();
+            //Console.WriteLine(sub.MinTimeRepeatToFormSub("abcd", "cdabcdab"));
+            //Console.WriteLine(sub.MinTimeRepeatToFormSub("ab", "cab"));
 
-            Console.ReadLine();
+            //var nth = new NthCharacter();
+            //Console.WriteLine(nth.FindIndexOfNthChar("Geeks", 'e', 2));
+            //Console.WriteLine(nth.FindIndexOfNthChar("GFG", 'e', 2));
+            //Console.WriteLine(nth.FindIndexOfNthChar("Geeks", 'e', 3));
+            //Console.WriteLine(nth.FindIndexOfNthChar("Stir Fry", 'r', 2));
+
+            var pal = new Palindrome();
+            Console.WriteLine(pal.NextHighestPalindromicNumber("4697557964"));
+            Console.WriteLine(pal.NextHighestPalindromicNumber("543212345"));
         }
     }
 }
