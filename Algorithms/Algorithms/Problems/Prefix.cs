@@ -37,5 +37,41 @@ namespace Strings.Problems
 
             return longestCommonPrefix;
         }
+
+        public int LongestPrefixSuffix(string str)
+        {
+            var arr = str.ToCharArray();
+            var lps = new int[str.Length];
+
+            lps[0] = 0;
+            var i = 0;
+            var j = 1;
+            while (j < arr.Length)
+            {
+                if (arr[i] == arr[j])
+                {
+                    i++;
+                    lps[j] = i;
+                    j++;
+                }
+                else
+                {
+                    if (i > 0)
+                    {
+                        i = lps[i - 1];
+                    }
+                    else
+                    {
+                        lps[i] = 0;
+                        i++;
+                    }
+                }
+            }
+            int res = lps[arr.Length - 1];
+
+            // Since we are looking for
+            // non overlapping parts.
+            return (res > arr.Length / 2) ? arr.Length / 2 : res;
+        }
     }
 }

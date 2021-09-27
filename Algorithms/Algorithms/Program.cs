@@ -133,9 +133,19 @@ namespace Strings
             //Console.WriteLine(zot.EqualZerosOnesTwos("102100211"));
             //Console.ReadLine();
 
-            //var sub = new Substring();
+            var sub = new Substring();
             //Console.WriteLine(sub.MinTimeRepeatToFormSub("abcd", "cdabcdab"));
             //Console.WriteLine(sub.MinTimeRepeatToFormSub("ab", "cab"));
+            //Console.WriteLine(sub.LongestSubstringWithKUnique("aabbcc", 1));
+            //Console.WriteLine(sub.LongestSubstringWithKUnique("aabbcc", 2));
+            //Console.WriteLine(sub.LongestSubstringWithKUnique("aabbcc", 3));
+            //Console.WriteLine(sub.LongestSubstringWithKUnique("aabbcc", 4));
+            //Console.WriteLine(sub.LongestSubstringWithoutRepeatingChar("ABDEFGABEF"));
+            //Console.WriteLine(sub.LongestSubstringWithoutRepeatingChar("BBBB"));
+            //Console.WriteLine(sub.LongestSubstringWithoutRepeatingChar("GEEKSFORGEEKS"));
+
+            Console.WriteLine(sub.SmallestSubstringContainingPattern("thisisateststring", "tist"));
+            Console.WriteLine(sub.SmallestSubstringContainingPattern("geeksforgeeks", "ork"));
 
             //var nth = new NthCharacter();
             //Console.WriteLine(nth.FindIndexOfNthChar("Geeks", 'e', 2));
@@ -143,9 +153,9 @@ namespace Strings
             //Console.WriteLine(nth.FindIndexOfNthChar("Geeks", 'e', 3));
             //Console.WriteLine(nth.FindIndexOfNthChar("Stir Fry", 'r', 2));
 
-            var pal = new Palindrome();
-            Console.WriteLine(pal.NextHighestPalindromicNumber("4697557964"));
-            Console.WriteLine(pal.NextHighestPalindromicNumber("543212345"));
+            //var pal = new Palindrome();
+            //Console.WriteLine(pal.NextHighestPalindromicNumber("4697557964"));
+            //Console.WriteLine(pal.NextHighestPalindromicNumber("543212345"));
         }
     }
 }
