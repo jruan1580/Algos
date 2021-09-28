@@ -10,6 +10,7 @@ namespace Strings
         {
             ////easy
             //var anagram = new Anagrams();
+            //anagram.PrintAnagramsTogether(new string[] { "cat", "dog", "tac", "god", "act" });
             //Console.WriteLine(anagram.IsKAnagram("fodr", "gork", 2));
             //Console.WriteLine(anagram.IsKAnagram("anagram", "grammar", 3));
             //Console.WriteLine(anagram.IsKAnagram("geeks", "eggkf", 1));
@@ -77,12 +78,14 @@ namespace Strings
 
             ////hard
             //Console.WriteLine("----------------------------------------");
-            //var permute = new Permutation();
+            var permute = new Permutation();
             //permute.Permute("abc", string.Empty);
             //permute.Permute("abcd", string.Empty);
             //permute.Permute("aa", string.Empty);
             //permute.DistinctPermute("aa", string.Empty, new Dictionary<string, bool>());
             //permute.DistinctPermute("aba", string.Empty, new Dictionary<string, bool>());
+            Console.WriteLine(permute.GetPermutationRank("acb"));
+            Console.WriteLine(permute.GetPermutationRank("string"));
 
             ////easy
             //Console.WriteLine("----------------------------------------");
@@ -133,7 +136,7 @@ namespace Strings
             //Console.WriteLine(zot.EqualZerosOnesTwos("102100211"));
             //Console.ReadLine();
 
-            var sub = new Substring();
+            //var sub = new Substring();
             //Console.WriteLine(sub.MinTimeRepeatToFormSub("abcd", "cdabcdab"));
             //Console.WriteLine(sub.MinTimeRepeatToFormSub("ab", "cab"));
             //Console.WriteLine(sub.LongestSubstringWithKUnique("aabbcc", 1));
@@ -144,8 +147,14 @@ namespace Strings
             //Console.WriteLine(sub.LongestSubstringWithoutRepeatingChar("BBBB"));
             //Console.WriteLine(sub.LongestSubstringWithoutRepeatingChar("GEEKSFORGEEKS"));
 
-            Console.WriteLine(sub.SmallestSubstringContainingPattern("thisisateststring", "tist"));
-            Console.WriteLine(sub.SmallestSubstringContainingPattern("geeksforgeeks", "ork"));
+            //Console.WriteLine(sub.SmallestSubstringContainingPattern("thisisateststring", "tist"));
+            //Console.WriteLine(sub.SmallestSubstringContainingPattern("geeksforgeeks", "ork"));
+            //Console.WriteLine(sub.SubstringWithLengthKAndKDistinctChars("abcc", 2));
+            //Console.WriteLine(sub.SubstringWithLengthKAndKDistinctChars("aabab", 3));
+
+            //Console.WriteLine(sub.SubstringWithKDistinctChars("abc", 2));
+            //Console.WriteLine(sub.SubstringWithKDistinctChars("aba", 2));
+            //Console.WriteLine(sub.SubstringWithKDistinctChars("aa", 1));
 
             //var nth = new NthCharacter();
             //Console.WriteLine(nth.FindIndexOfNthChar("Geeks", 'e', 2));

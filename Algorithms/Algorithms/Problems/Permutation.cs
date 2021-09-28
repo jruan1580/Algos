@@ -48,5 +48,31 @@ namespace Strings.Problems
             }
         }
 
+        public int GetPermutationRank(string str)
+        {
+            var map = new Dictionary<string, bool>();            
+            DistinctPermute(str, string.Empty, map);
+
+            var arr = new string[map.Count];
+            var i = 0;
+            foreach (var obj in map)
+            {
+                arr[i] = obj.Key;
+                i++;
+            }
+
+            Array.Sort(arr);
+            for (var index = 0; index < arr.Length; index++)
+            {
+                if (!str.Equals(arr[index]))
+                {
+                    continue;
+                }
+
+                return index + 1;
+            }
+
+            return -1;
+        }
     }
 }

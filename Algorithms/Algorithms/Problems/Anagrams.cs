@@ -124,5 +124,38 @@ namespace Strings.Problems
 
             return numOfCharsRemaining <= k;
         }
+
+        public void PrintAnagramsTogether(string [] arrs)
+        {
+            var map = new Dictionary<string, List<string>>();
+
+            foreach(var str in arrs)
+            {
+                var charArr = str.ToCharArray();
+                Array.Sort(charArr);
+
+                var sortedStr = new string(charArr);
+                if (!map.ContainsKey(sortedStr))
+                {
+                    map.Add(sortedStr, new List<string>() { str });
+                }
+                else
+                {
+                    map[sortedStr].Add(str); 
+                }
+            }
+
+            var finalStr = string.Empty;
+            foreach (var obj in map)
+            {
+                if (!string.IsNullOrEmpty(finalStr))
+                {
+                    finalStr += ", ";
+                }
+                finalStr += string.Join(", ", obj.Value);
+            }
+
+            Console.WriteLine(finalStr);
+        }
     }
 }

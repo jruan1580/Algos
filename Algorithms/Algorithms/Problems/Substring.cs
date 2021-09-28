@@ -146,6 +146,95 @@ namespace Strings.Problems
             return minSubstr;
         }
 
+        public int SubstringWithLengthKAndKDistinctChars(string str, int k)
+        {
+            var map = new Dictionary<char, int>();
+            for (var i = 0; i < k; i++)
+            {
+                if (!map.ContainsKey(str[i]))
+                {
+                    map.Add(str[i], 1);
+                }
+                else
+                {
+                    map[str[i]] += 1;
+                }
+            }
+
+            var answer = 0;
+            if (map.Count == k)
+            {
+                answer++;
+            }
+
+            var start = 0;
+            for (var i = k; i < str.Length; i++)
+            {
+                if (!map.ContainsKey(str[i]))
+                {
+                    map.Add(str[i], 1);
+                }
+                else
+                {
+                    map[str[i]] += 1;
+                }
+
+                //remove the first letter to ensure length is still k
+                map[str[start]] -= 1;
+                if (map[str[start]] == 0)
+                {
+                    //remove this key if no more
+                    map.Remove(str[start]);
+                }
+
+                start++;
+
+                //check to see if still has k unique chars
+                if (map.Count == k)
+                {
+                    answer++;
+                }
+            }
+
+            return answer;
+
+        }
+
+        public int SubstringWithKDistinctChars(string str, int k)
+        {
+            var map = new Dictionary<char, int>();
+            var answer = 0;
+
+            for (var i = 0; i < str.Length; i++)
+            {
+                map.Clear();
+
+                for (var j = i; j < str.Length; j++)
+                {
+                    if (!map.ContainsKey(str[j]))
+                    {
+                        map.Add(str[j], 1);
+                    }
+                    else
+                    {
+                        map[str[j]] += 1;
+                    }
+
+                    if (map.Count == k)
+                    {
+                        answer++;
+                    }
+
+                    if (map.Count > k)
+                    {
+                        break;
+                    }
+                }
+            }
+          
+            return answer;
+        }
+
         private int NumberOfUniqueChars(int[] count)
         {
             var numOfUniqueChars = 0;
