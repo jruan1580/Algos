@@ -78,22 +78,31 @@ namespace Strings
 
             ////hard
             //Console.WriteLine("----------------------------------------");
-            var permute = new Permutation();
+            //var permute = new Permutation();
             //permute.Permute("abc", string.Empty);
             //permute.Permute("abcd", string.Empty);
             //permute.Permute("aa", string.Empty);
             //permute.DistinctPermute("aa", string.Empty, new Dictionary<string, bool>());
             //permute.DistinctPermute("aba", string.Empty, new Dictionary<string, bool>());
-            Console.WriteLine(permute.GetPermutationRank("acb"));
-            Console.WriteLine(permute.GetPermutationRank("string"));
+            //Console.WriteLine(permute.GetPermutationRank("acb"));
+            //Console.WriteLine(permute.GetPermutationRank("string"));
 
             ////easy
             //Console.WriteLine("----------------------------------------");
-            //var palindrome = new Palindrome();
+            var palindrome = new Palindrome();
             //Console.WriteLine(palindrome.IsPalindome("aba"));
             //Console.WriteLine(palindrome.IsPalindome("radar"));
             //Console.WriteLine(palindrome.IsPalindome("java"));
             //Console.WriteLine(palindrome.IsPalindome("madam"));
+            //Console.WriteLine(palindrome.LongestPalindromeSubstring("forgeeksskeegfor"));
+            //Console.WriteLine(palindrome.LongestPalindromeSubstring("Geeks"));
+            //Console.WriteLine(palindrome.LongestCommonSubsequence("ABCDGH", "AEDFHR"));
+            //Console.WriteLine(palindrome.LongestCommonSubsequence("AGGTAB", "GXTXAYB"));
+            Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("ab"));
+            Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("aa"));
+            Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("abcd"));
+            Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("abcda"));
+            Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("abcde"));
 
             ////easy
             //Console.WriteLine("----------------------------------------");
