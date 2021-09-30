@@ -89,7 +89,7 @@ namespace Strings
 
             ////easy
             //Console.WriteLine("----------------------------------------");
-            var palindrome = new Palindrome();
+            //var palindrome = new Palindrome();
             //Console.WriteLine(palindrome.IsPalindome("aba"));
             //Console.WriteLine(palindrome.IsPalindome("radar"));
             //Console.WriteLine(palindrome.IsPalindome("java"));
@@ -98,11 +98,11 @@ namespace Strings
             //Console.WriteLine(palindrome.LongestPalindromeSubstring("Geeks"));
             //Console.WriteLine(palindrome.LongestCommonSubsequence("ABCDGH", "AEDFHR"));
             //Console.WriteLine(palindrome.LongestCommonSubsequence("AGGTAB", "GXTXAYB"));
-            Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("ab"));
-            Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("aa"));
-            Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("abcd"));
-            Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("abcda"));
-            Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("abcde"));
+            //Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("ab"));
+            //Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("aa"));
+            //Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("abcd"));
+            //Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("abcda"));
+            //Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("abcde"));
 
             ////easy
             //Console.WriteLine("----------------------------------------");
@@ -174,6 +174,23 @@ namespace Strings
             //var pal = new Palindrome();
             //Console.WriteLine(pal.NextHighestPalindromicNumber("4697557964"));
             //Console.WriteLine(pal.NextHighestPalindromicNumber("543212345"));
+
+            //var subseq = new Subsequence();
+            //Console.WriteLine(subseq.NumberOfUniqueSubsequence("gfg"));
+            //Console.WriteLine(subseq.NumberOfUniqueSubsequence("ggg"));
+
+            //var interleave = new Interleave();
+
+            //Console.WriteLine(interleave.AreInterleaveStringsRecursively("XXXXZY", "XXY", "XXZ"));
+            //Console.WriteLine(interleave.AreInterleaveDp("XXXXZY", "XXY", "XXZ"));
+            // Console.WriteLine(interleave.AreInterleaveStringsRecursively("XXY", "YX", "X"));
+            //Console.WriteLine(interleave.AreInterleaveDp("XXY", "YX", "X"));
+
+            var candyCrush = new CandyCrush();
+            Console.WriteLine(candyCrush.RestrictiveCandyCrush("geeksforgeeks", 3));
+            Console.WriteLine(candyCrush.RestrictiveCandyCrush("geegsforgeeeks", 3));
+            Console.WriteLine(candyCrush.RestrictiveCandyCrush("geeksforgeeks", 2));
+            Console.WriteLine(candyCrush.RestrictiveCandyCrush("geegsforgeeeks", 2));
         }
     }
 }
