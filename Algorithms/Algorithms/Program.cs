@@ -186,11 +186,29 @@ namespace Strings
             // Console.WriteLine(interleave.AreInterleaveStringsRecursively("XXY", "YX", "X"));
             //Console.WriteLine(interleave.AreInterleaveDp("XXY", "YX", "X"));
 
-            var candyCrush = new CandyCrush();
-            Console.WriteLine(candyCrush.RestrictiveCandyCrush("geeksforgeeks", 3));
-            Console.WriteLine(candyCrush.RestrictiveCandyCrush("geegsforgeeeks", 3));
-            Console.WriteLine(candyCrush.RestrictiveCandyCrush("geeksforgeeks", 2));
-            Console.WriteLine(candyCrush.RestrictiveCandyCrush("geegsforgeeeks", 2));
+            //var candyCrush = new CandyCrush();
+            //Console.WriteLine(candyCrush.RestrictiveCandyCrush("geeksforgeeks", 3));
+            //Console.WriteLine(candyCrush.RestrictiveCandyCrush("geegsforgeeeks", 3));
+            //Console.WriteLine(candyCrush.RestrictiveCandyCrush("geeksforgeeks", 2));
+            //Console.WriteLine(candyCrush.RestrictiveCandyCrush("geegsforgeeeks", 2));
+
+            //var distance = new Distance();
+            //Console.WriteLine(distance.MinEditDistance("geek", "gesek"));
+            //Console.WriteLine(distance.MinEditDistance("sunday", "saturday"));
+
+            //var prefix = new Prefix();
+            //Console.WriteLine(prefix.LongestPrefixSuffix("abcab"));
+            //Console.WriteLine(prefix.LongestPrefixSuffix("aabcdaabc"));
+            //Console.WriteLine(prefix.LongestPrefixSuffix("aaaa"));
+
+            var pattern = new Pattern();
+            //pattern.PrintPatternKMP("THIS IS A TEST TEXT", "TEST");
+            //pattern.PrintPatternKMP("AABAACAADAABAABA", "AABA");
+            //pattern.PrintPatternKMP("CCC", "CC");
+
+            pattern.PrintPatternRabinKarp("THIS IS A TEST TEXT", "TEST");
+            //pattern.PrintPatternRabinKarp("AABAACAADAABAABA", "AABA");
+            //pattern.PrintPatternRabinKarp("CCC", "CC");
         }
     }
 }

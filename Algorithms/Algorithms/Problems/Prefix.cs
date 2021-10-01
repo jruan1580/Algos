@@ -50,8 +50,8 @@ namespace Strings.Problems
             {
                 if (arr[i] == arr[j])
                 {
+                    lps[j] = i + 1;
                     i++;
-                    lps[j] = i;
                     j++;
                 }
                 else
@@ -62,8 +62,8 @@ namespace Strings.Problems
                     }
                     else
                     {
-                        lps[i] = 0;
-                        i++;
+                        lps[j] = 0;
+                        j++;
                     }
                 }
             }
