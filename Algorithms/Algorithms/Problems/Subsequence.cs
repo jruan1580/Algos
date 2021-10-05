@@ -31,6 +31,15 @@ namespace Strings.Problems
             }
 
             return dp[str.Length];
-        }        
+        }
+
+        public int ShortestSuperSubsequence(string str1, string str2)
+        {
+            var pal = new Palindrome();
+
+            var lcs = pal.LongestCommonSubsequence(str1, str2);
+
+            return (str1.Length + str2.Length) - lcs;
+        }
     }
 }

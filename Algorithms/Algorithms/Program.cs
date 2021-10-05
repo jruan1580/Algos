@@ -130,6 +130,8 @@ namespace Strings
             //var bracket = new Brackets();
             //Console.WriteLine(bracket.EqualBrackets("{}{}{"));
             //Console.WriteLine(bracket.EqualBrackets("{}{}"));
+            //Console.WriteLine(bracket.LongestValidParan("((()"));
+            //Console.WriteLine(bracket.LongestValidParan(")()())"));
 
             //var iso = new Isomorphic();
 
@@ -174,10 +176,16 @@ namespace Strings
             //var pal = new Palindrome();
             //Console.WriteLine(pal.NextHighestPalindromicNumber("4697557964"));
             //Console.WriteLine(pal.NextHighestPalindromicNumber("543212345"));
+            //Console.WriteLine(pal.LongestPalindromicSubWithRearrangement("aabe"));
+            //Console.WriteLine(pal.LongestPalindromicSubWithRearrangement("adbabd"));
+            //Console.WriteLine(pal.LongestPalindromicSubWithRearrangement("abc"));
+            //Console.WriteLine(pal.LongestPalindromicSubWithRearrangement("abb"));
 
             //var subseq = new Subsequence();
             //Console.WriteLine(subseq.NumberOfUniqueSubsequence("gfg"));
             //Console.WriteLine(subseq.NumberOfUniqueSubsequence("ggg"));
+            //Console.WriteLine(subseq.ShortestSuperSubsequence("abcd", "xycd"));
+            //Console.WriteLine(subseq.ShortestSuperSubsequence("efgh", "jghi"));
 
             //var interleave = new Interleave();
 
@@ -201,14 +209,14 @@ namespace Strings
             //Console.WriteLine(prefix.LongestPrefixSuffix("aabcdaabc"));
             //Console.WriteLine(prefix.LongestPrefixSuffix("aaaa"));
 
-            var pattern = new Pattern();
+            //var pattern = new Pattern();
             //pattern.PrintPatternKMP("THIS IS A TEST TEXT", "TEST");
             //pattern.PrintPatternKMP("AABAACAADAABAABA", "AABA");
             //pattern.PrintPatternKMP("CCC", "CC");
 
-            pattern.PrintPatternRabinKarp("THIS IS A TEST TEXT", "TEST");
+            //pattern.PrintPatternRabinKarp("THIS IS A TEST TEXT", "TEST");
             //pattern.PrintPatternRabinKarp("AABAACAADAABAABA", "AABA");
-            //pattern.PrintPatternRabinKarp("CCC", "CC");
+            //pattern.PrintPatternRabinKarp("CCC", "CC");            
         }
     }
 }

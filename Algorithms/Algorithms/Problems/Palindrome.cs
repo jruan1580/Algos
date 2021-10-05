@@ -224,6 +224,52 @@ namespace Strings.Problems
             return str.Length - lcsLen;
         }
 
+        public int LongestPalindromicSubWithRearrangement(string str)
+        {
+            str = str.ToLower(); 
+            var charFrequence = new int[26];
+            Array.Fill(charFrequence, 0);
+
+            for(var i = 0; i < str.Length; i++)
+            {
+                charFrequence[str[i] - 'a'] += 1;
+            }
+
+            //consider entire string first for that is the longest
+            for(var i = str.Length - 1; i >= 0; i--)
+            {
+                var evenCount = 0;
+                var oddCount = 0;
+
+                for (var j = 0; j < 26; j++)
+                {
+                    //find out even/odd letter count
+                    if (charFrequence[j] % 2 == 0)
+                    {
+                        evenCount++;
+                    }
+                    else
+                    {
+                        oddCount++;
+                    }                   
+                }
+
+                //check to see if its a palindrome by satisfying two rules:
+                //1. all evens and 1 odd
+                //2. all evens
+                if ((oddCount == 1 && (evenCount == 0 || evenCount > 0)) || (oddCount == 0 && evenCount > 0))
+                {
+                    //since we are starting at the very longest a string can be, if we find something, return length immediatley for that can only be the longest
+                    return (i - 0) + 1;                      
+                }
+
+                //decrease count of the current character
+                charFrequence[str[i] - 'a'] -= 1;
+            }
+
+            return -1; //cannot find 
+        }
+
         private void Reverse(char[] num, int i, int j)
         {
             while (i < j)
