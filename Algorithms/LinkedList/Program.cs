@@ -90,9 +90,33 @@ namespace LinkedList
             //    tmp = tmp.Next;
             //}
 
-            var list = new ListNode<int>(2, new ListNode<int>(2, new ListNode<int>(2, new ListNode<int>(2, null))));
-            var noDupList = new NodeRemoval().DeleteDuplicateInSortedList(list);
-            var tmp = noDupList;
+            //var list = new ListNode<int>(2, new ListNode<int>(2, new ListNode<int>(2, new ListNode<int>(2, null))));
+            //var noDupList = new NodeRemoval().DeleteDuplicateInSortedList(list);
+            //var tmp = noDupList;
+            //while (tmp != null)
+            //{
+            //    Console.Write(tmp.Data + " ");
+            //    tmp = tmp.Next;
+            //}
+
+            //var list = new ListNode<int>(1, new ListNode<int>(2, new ListNode<int>(3, new ListNode<int>(4, new ListNode<int>(5, new ListNode<int>(6, null))))));
+            //var list = new ListNode<int>(1, new ListNode<int>(2, new ListNode<int>(3, null)));
+            //var reverse = new Reverse();
+            //var reverseList = reverse.ReverseRecursively(list);
+
+            //var tmp = reverseList;
+            //while (tmp != null)
+            //{
+            //    Console.Write(tmp.Data + " ");
+            //    tmp = tmp.Next;
+            //}
+
+            var list1 = new ListNode<int>(9, new ListNode<int>(9, new ListNode<int>(9, null)));
+            //var list2 = new ListNode<int>(9, new ListNode<int>(9, new ListNode<int>(9, null)));
+            var list2 = new ListNode<int>(1, null);
+            var sum = new Sum().SumOfTwoLinkedList(list1, list2);
+
+            var tmp = sum;
             while (tmp != null)
             {
                 Console.Write(tmp.Data + " ");
