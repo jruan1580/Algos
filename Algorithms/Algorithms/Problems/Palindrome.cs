@@ -149,7 +149,14 @@ namespace Strings.Problems
                     }
                     else if(str[row] == str[col])
                     {
-                        lps[row, col] = 2 + lps[row + 1, col - 1];
+                        if (lps[row + 1, col - 1] == 0)
+                        {
+                            lps[row, col] = 0;
+                        }
+                        else
+                        {
+                            lps[row, col] = 2 + lps[row + 1, col - 1];
+                        }                        
                     }
                     else
                     {
@@ -268,6 +275,61 @@ namespace Strings.Problems
             }
 
             return -1; //cannot find 
+        }
+
+        public int DistinctPalindromicSubstrings(string str)
+        {
+            var dp = new int[str.Length, str.Length];
+            var distinct = new HashSet<string>();
+
+            //take care of individual char
+            for(var i = 0; i < str.Length; i++)
+            {
+                dp[i, i] = 1;
+                //individual chars are palindromes
+                if (!distinct.Contains(str[i].ToString()))
+                {
+                    distinct.Add(str[i].ToString());
+                }
+            }
+
+            //take care of pal starting with length 2
+            for(var pl = 2; pl <= str.Length; pl++)
+            {
+                for(var row = 0; row < str.Length - pl + 1; row++)
+                {
+                    var col = row + pl - 1;
+                    if (pl == 2 && str[row] == str[col])
+                    {
+                        dp[row, col] = 2;
+                        if (!distinct.Contains(str.Substring(row, pl)))
+                        {
+                            distinct.Add(str.Substring(row, pl));
+                        }
+                    }
+                    else if (str[row] == str[col])
+                    {
+                        if (dp[row + 1, col - 1] == 0)
+                        {
+                            dp[row, col] = 0;
+                        }
+                        else
+                        {
+                            dp[row, col] = 2 + dp[row + 1, col - 1];
+                            if (!distinct.Contains(str.Substring(row, pl)))
+                            {
+                                distinct.Add(str.Substring(row, pl));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        dp[row, col] = 0;
+                    }
+                }
+            }
+
+            return distinct.Count;
         }
 
         private void Reverse(char[] num, int i, int j)

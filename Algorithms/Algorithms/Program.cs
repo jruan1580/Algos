@@ -103,6 +103,8 @@ namespace Strings
             //Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("abcd"));
             //Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("abcda"));
             //Console.WriteLine(palindrome.MinimumInsertionToFormPalindrome("abcde"));
+            //Console.WriteLine(palindrome.DistinctPalindromicSubstrings("abaaa"));
+            //Console.WriteLine(palindrome.DistinctPalindromicSubstrings("geek"));
 
             ////easy
             //Console.WriteLine("----------------------------------------");
@@ -216,7 +218,7 @@ namespace Strings
 
             //pattern.PrintPatternRabinKarp("THIS IS A TEST TEXT", "TEST");
             //pattern.PrintPatternRabinKarp("AABAACAADAABAABA", "AABA");
-            //pattern.PrintPatternRabinKarp("CCC", "CC");            
+            //pattern.PrintPatternRabinKarp("CCC", "CC");                      
         }
     }
 }
