@@ -111,17 +111,73 @@ namespace LinkedList
             //    tmp = tmp.Next;
             //}
 
-            var list1 = new ListNode<int>(9, new ListNode<int>(9, new ListNode<int>(9, null)));
-            //var list2 = new ListNode<int>(9, new ListNode<int>(9, new ListNode<int>(9, null)));
-            var list2 = new ListNode<int>(1, null);
-            var sum = new Sum().SumOfTwoLinkedList(list1, list2);
+            //var list1 = new ListNode<int>(9, new ListNode<int>(9, new ListNode<int>(9, null)));
+            ////var list2 = new ListNode<int>(9, new ListNode<int>(9, new ListNode<int>(9, null)));
+            //var list2 = new ListNode<int>(1, null);
+            //var sum = new Sum().SumOfTwoLinkedList(list1, list2);
 
-            var tmp = sum;
-            while (tmp != null)
-            {
-                Console.Write(tmp.Data + " ");
-                tmp = tmp.Next;
-            }
+            //var tmp = sum;
+            //while (tmp != null)
+            //{
+            //    Console.Write(tmp.Data + " ");
+            //    tmp = tmp.Next;
+            //}
+
+            //var list = new ListNode<int>(1, new ListNode<int>(2, new ListNode<int>(3, new ListNode<int>(4, new ListNode<int>(5, null)))));
+            //var reverse = new Reverse();
+            //var reverseKList = reverse.ReverseInKGroup(list, 3);
+
+            //var tmp = reverseKList;
+            //while (tmp != null)
+            //{
+            //    Console.Write(tmp.Data + " ");
+            //    tmp = tmp.Next;
+            //}
+
+            //var list = new ListNode<int>(1, new ListNode<int>(2, new ListNode<int>(3, new ListNode<int>(4, new ListNode<int>(5, new ListNode<int>(6, new ListNode<int>(7, new ListNode<int>(8, null))))))));
+            //var reverse = new Reverse();
+            //var reverseAltKList = reverse.ReverseAltKNodes(list, 2, true);
+            //var tmp = reverseAltKList;
+            //while (tmp != null)
+            //{
+            //    Console.Write(tmp.Data + " ");
+            //    tmp = tmp.Next;
+            //}
+
+            //var listHead = new ListNode<int>(1, null);
+            //listHead.Next = listHead;
+            //var secondNode = new ListNode<int>(2, null);
+            //listHead.Next = secondNode;
+            //var thirdNode = new ListNode<int>(3, null);
+            //secondNode.Next = thirdNode;
+            //var fourthNode = new ListNode<int>(4, null);
+            //thirdNode.Next = fourthNode;
+            //var fifthNode = new ListNode<int>(5, thirdNode);
+            //fourthNode.Next = fifthNode;
+
+            //var loop = new Loops();
+            //var removedLoopedList = loop.RemoveLoopInList(listHead);
+            //if (loopNode == null)
+            //{
+            //    Console.WriteLine("No Loops");
+            //}
+            //else
+            //{
+            //    Console.WriteLine(loopNode.Data);
+            //}
+
+            //var tmp = removedLoopedList;
+            //while (tmp != null)
+            //{
+            //    Console.Write(tmp.Data + " ");
+            //    tmp = tmp.Next;
+            //}
+
+            //var list = new ListNode<int>(1, new ListNode<int>(2, new ListNode<int>(3, new ListNode<int>(4, new ListNode<int>(5, new ListNode<int>(6, new ListNode<int>(7, new ListNode<int>(8, null))))))));
+            //var traversal = new ListTraversal();
+            //Console.WriteLine(traversal.NthFromLastElement(list, 2));
+            //Console.WriteLine(traversal.NthFromLastElement(list, 4));
+            //Console.WriteLine(traversal.NthFromLastElement(list, 9));
         }
     }
 }

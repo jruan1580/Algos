@@ -19,23 +19,19 @@ namespace LinkedList.Problems
                 return head;
             }
 
-            var next = head.Next.Next;
-            var prev = head;
-            head = head.Next;
-            prev.Next = null;
-
-            while(next != null)
+            var current = head;
+            ListNode<int> next = null;
+            ListNode<int> prev = null;
+            
+            while(current != null)
             {
-                head.Next = prev;
-                prev = head;
-                head = next;
-                next = head.Next;
-            }
+                next = current.Next;
+                current.Next = prev;
+                prev = current;
+                current = next;
+            }      
 
-            head.Next = prev;
-
-
-            return head;
+            return prev;
         }
 
         public ListNode<int> ReverseRecursively(ListNode<int> head)
@@ -51,16 +47,84 @@ namespace LinkedList.Problems
             }
 
             var headOfReverse = ReverseRecursively(head.Next);
-            var tail = headOfReverse;
-            while(tail.Next != null)
-            {
-                tail = tail.Next;
-            }
-
-            tail.Next = head;
-            head.Next = null;
+            
+            head.Next.Next = head;
+            head.Next = null;     
 
             return headOfReverse;
+        }
+
+        public ListNode<int> ReverseInKGroup(ListNode<int> head, int k)
+        {
+            if (head == null)
+            {
+                return null;
+            }
+
+            var count = 0;
+            var current = head;
+            var currTail = head;
+            ListNode<int> next = null;
+            ListNode<int> prev = null;
+
+            while (current != null && count < k)
+            {
+                next = current.Next;
+                current.Next = prev;
+                prev = current;
+                current = next;
+                count++;
+            }
+
+            var nextReverseSet = ReverseInKGroup(current, k);
+            currTail.Next = nextReverseSet;
+
+            return prev;
+        }
+
+        public ListNode<int> ReverseAltKNodes(ListNode<int> head, int k, bool reverse)
+        {
+            if (head == null)
+            {
+                return head;
+            }
+
+            var count = 0;
+            var current = head;            
+            ListNode<int> next = null;
+            ListNode<int> prev = null;
+
+            if (reverse)
+            {
+                while(current != null && count < k)
+                {
+                    next = current.Next;
+                    current.Next = prev;
+                    prev = current;
+                    current = next;
+                    count++;
+                }
+            }
+            else
+            {
+                while(current != null && count < k)
+                {
+                    prev = current;
+                    current = current.Next;
+                    count++;
+                }
+            }
+
+            var nextKSet = ReverseAltKNodes(current, k, !reverse);
+            var currTail = (reverse) ? head : prev;
+            currTail.Next = nextKSet;
+
+            if (reverse)
+            {
+                return prev;
+            }
+
+            return head;
         }
     }
 }
