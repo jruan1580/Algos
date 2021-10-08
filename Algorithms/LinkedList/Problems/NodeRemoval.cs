@@ -79,5 +79,71 @@ namespace LinkedList.Problems
 
             return newListHead;
         }
+
+        public ListNode<int> RemoveLastOccurrence(ListNode<int> head, int n)
+        {
+            if (head == null)
+            {
+                return head;
+            }
+
+            if (head.Next == null && head.Data == n)
+            {
+                return null;
+            }
+
+            var current = head;
+            ListNode<int> prev = null;
+            ListNode<int> nodeBeforeLastAppearance = null;
+            ListNode<int> nodeAfterLastAppearance = null;
+
+            while (current != null)
+            {
+                if (current.Data == n)
+                {
+                    if (prev != null)
+                    {
+                        nodeBeforeLastAppearance = prev;
+                    }                    
+
+                    nodeAfterLastAppearance = current.Next;
+
+                }
+         
+                prev = current;
+                current = current.Next;                                
+            }
+
+            //element cannot be found
+            if (nodeBeforeLastAppearance == null && nodeAfterLastAppearance == null)
+            {
+                return head;
+            }
+            
+            //element was found at the beginning
+            if (nodeBeforeLastAppearance == null && nodeAfterLastAppearance != null)
+            {
+                return nodeAfterLastAppearance; //return node after last appearance as new head.
+            }
+            
+            nodeBeforeLastAppearance.Next = nodeAfterLastAppearance;
+            
+            return head;
+        }
+
+        public void DeleteGivenNode(ListNode<int> nodeToDelete)
+        {
+            var tmp = nodeToDelete;
+            ListNode<int> prev = null;
+            while(tmp.Next != null)
+            {
+                tmp.Data = tmp.Next.Data;
+
+                prev = tmp;
+                tmp = tmp.Next;
+            }
+
+            prev.Next = null;
+        }
     }
 }
