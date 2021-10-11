@@ -145,5 +145,37 @@ namespace LinkedList.Problems
 
             prev.Next = null;
         }
+
+        public ListNode<int> RemoveNAfterM(ListNode<int> head, int m, int n)
+        {
+            if (head == null)
+            {
+                return null;
+            }
+
+            var current = head;
+            ListNode<int> prev = null;
+
+            while(current != null)
+            {
+                var mCount = 0;
+                while(mCount < m && current != null)
+                {
+                    prev = current;
+                    current = current.Next;
+                    mCount++;
+                }
+
+                var nCount = 0;
+                while(nCount < n && current != null)
+                {
+                    current = current.Next;
+                    prev.Next = current;
+                    nCount++;
+                }
+            }
+
+            return head;
+        }
     }
 }

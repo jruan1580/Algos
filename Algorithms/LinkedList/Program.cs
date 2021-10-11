@@ -185,24 +185,24 @@ namespace LinkedList
             //Console.WriteLine(palindrome.IsPalindrome(pal));
             //Console.WriteLine(palindrome.IsPalindrome(notPal));
 
-            var removal = new NodeRemoval();
-            var listHead = new ListNode<int>(1, null);
-            var secondNode = new ListNode<int>(2, null);
-            listHead.Next = secondNode;
-            var thirdNode = new ListNode<int>(3, null);
-            secondNode.Next = thirdNode;
-            var fourthNode = new ListNode<int>(4, null);
-            thirdNode.Next = fourthNode;
-            var fifthNode = new ListNode<int>(5, null);
-            fourthNode.Next = fifthNode;
+            //var removal = new NodeRemoval();
+            //var listHead = new ListNode<int>(1, null);
+            //var secondNode = new ListNode<int>(2, null);
+            //listHead.Next = secondNode;
+            //var thirdNode = new ListNode<int>(3, null);
+            //secondNode.Next = thirdNode;
+            //var fourthNode = new ListNode<int>(4, null);
+            //thirdNode.Next = fourthNode;
+            //var fifthNode = new ListNode<int>(5, null);
+            //fourthNode.Next = fifthNode;
 
-            removal.DeleteGivenNode(fourthNode);
-            var tmp = listHead;
-            while (tmp != null)
-            {
-                Console.Write(tmp.Data + " ");
-                tmp = tmp.Next;
-            }
+            //removal.DeleteGivenNode(fourthNode);
+            //var tmp = listHead;
+            //while (tmp != null)
+            //{
+            //    Console.Write(tmp.Data + " ");
+            //    tmp = tmp.Next;
+            //}
             //var list = new ListNode<int>(1, new ListNode<int>(2, new ListNode<int>(2, null)));
             //var newList = removal.RemoveLastOccurrence(list, 1);
             //if (newList == null)
@@ -219,6 +219,19 @@ namespace LinkedList
             //    }
             //}
 
+            //var head1 = new ListNode<int>(10, new ListNode<int>(20, new ListNode<int>(30, new ListNode<int>(40, new ListNode<int>(50, new ListNode<int>(60, new ListNode<int>(70, null)))))));
+            //var head2 = new ListNode<int>(1, new ListNode<int>(2, new ListNode<int>(3, new ListNode<int>(4, new ListNode<int>(5, new ListNode<int>(6, new ListNode<int>(7, null)))))));
+
+            //var merge = new Merge();
+
+            //var mergedList = merge.MergeAltPosition(head1, head2);
+
+            //var tmp = mergedList;
+            //while (tmp != null)
+            //{
+            //    Console.Write(tmp.Data + " ");
+            //    tmp = tmp.Next;
+            //}
         }
     }
 }
