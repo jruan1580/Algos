@@ -116,8 +116,45 @@ namespace Trees
             //var traversal = new Traversals();
             //Console.WriteLine(traversal.FindDepthGivenNLStr(treePat, 0));
 
+            //var traversal = new Traversals();
+            //Console.WriteLine(traversal.FindNumOfPreorderSequence(4));
+
+            //int[] inOrd = new int[] { 70, 40, 80, 20, 50, 10, 60, 30 };
+            //int[] preOrder = new int[] { 10, 20, 40, 70, 80, 50, 30, 60 };
+            //var inorder = new int[] { 4, 8, 10, 12, 14, 20, 22 };
+            //var levelorder = new int[] { 20, 8, 22, 4, 12, 10, 14 };
+
+            //var preOrder = new int[] { 1, 2, 4, 8, 9, 5, 3, 6, 7 };
+            //var postOrder = new int[] { 8, 9, 4, 5, 2, 6, 7, 3, 1 };
+            //var preOrder = new int[] { 1, 2, 4, 5, 3, 6, 7 };
+            //var mirrored = new int[] { 1, 3, 7, 6, 2, 5, 4 };
+            var preorder = new int[] { 10, 20, 40, 70, 80, 50, 30, 60 };
+            var preorderNl = new char[] { 'N', 'N', 'N', 'L', 'L', 'L', 'N', 'L' };
+            //var head = new ListNode<int>(10, new ListNode<int>(12, new ListNode<int>(15, new ListNode<int>(25, new ListNode<int>(30, new ListNode<int>(36, null))))));
+
             var traversal = new Traversals();
-            Console.WriteLine(traversal.FindNumOfPreorderSequence(4));
+            //traversal.PrintPostGivenInAndPre(inOrd, preOrder, 0, inOrd.Length - 1, 0);
+            var construct = new Construction();
+            //var root = construct.ConstructTreeWithInAndPre(inOrd, preOrder, 0, inOrd.Length - 1, 0);
+            //var root = construct.ConstructTreeWithInAndLevel(inorder, levelorder, 0, inorder.Length - 1);
+            //var root = construct.ConstructCompleteTreeWithList(head);
+            //var root = construct.ConstructCompleteTreeWithLevel(new int[] { 1, 2, 3, 4, 5, 6, 6, 6, 6, 6 });
+            //traversal.PostOrderTraversalIterative(root);
+            //var tracker = new Dictionary<int, List<TreeNodes<int>>>();
+            //traversal.PrintLevelOrderTraversal(root, 0, tracker);
+            //foreach (var obj in tracker)
+            //{
+            //    foreach (var node in obj.Value)
+            //    {
+            //        Console.Write(node.Data + " ");
+            //    }
+            //}
+
+            //var root = construct.ConstructFullBaseOnPreAndPost(postOrder, preOrder, 0, postOrder.Length - 1, 0, preOrder.Length - 1);
+            //var root = construct.ConstructTreeByPreAndMirror(preOrder, mirrored, 0, preOrder.Length - 1, 0, mirrored.Length - 1);
+            var index = 0;
+            var root = construct.ConstructSpecialTreeGivenPreNL(preorder, preorderNl, ref index);
+            traversal.PreOrderTraversalIterative(root);
         }
     }
 }

@@ -276,16 +276,16 @@ namespace Trees.Problems
             PrintLevelOrderTraversal(root.Right, level + 1, tracker);
 
             //print everything
-            if (level == 1)
-            {
-                foreach(var obj in tracker)
-                {
-                    foreach(var node in obj.Value)
-                    {
-                        Console.Write(node.Data + " ");
-                    }
-                }
-            }
+            //if (level == 1)
+            //{
+            //    foreach(var obj in tracker)
+            //    {
+            //        foreach(var node in obj.Value)
+            //        {
+            //            Console.Write(node.Data + " ");
+            //        }
+            //    }
+            //}
         }
 
         public void PrintDiagonalTraversal(TreeNodes<int> root, int slope, Dictionary<int, List<TreeNodes<int>>> tracker)
@@ -310,7 +310,7 @@ namespace Trees.Problems
             PrintDiagonalTraversal(root.Right, slope, tracker);
         }
 
-        public int FindDepthGivenNLStr(string treePattern, int index)
+        public int FindDepthGivenNLStr(string treePattern, ref int index)
         {
             if (index >= treePattern.Length || treePattern[index] == 'l')
             {
@@ -319,11 +319,11 @@ namespace Trees.Problems
 
             index++;//go to next char
             //traverse left for left height
-            var left = FindDepthGivenNLStr(treePattern, index);
+            var left = FindDepthGivenNLStr(treePattern, ref index);
 
             //now check right height
             index++;
-            var right = FindDepthGivenNLStr(treePattern, index);
+            var right = FindDepthGivenNLStr(treePattern, ref index);
 
             return Math.Max(left, right) + 1;
         }
