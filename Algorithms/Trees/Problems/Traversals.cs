@@ -348,7 +348,7 @@ namespace Trees.Problems
         private int Search(int [] arr, int start, int end, int element)
         {
             var i = start;
-            for (i = start; i < end; i++)
+            for (i = start; i <= end; i++)
             {
                 if (arr[i] == element)
                 {

@@ -211,10 +211,40 @@ namespace Trees.Problems
             return new TreeNodes<int>(current, left, right);
         }
 
+        public TreeNodes<int> SpecialWithInNodeGreaterThanKids(int[] inorder, int startIn, int endIn)
+        {
+            if (startIn > endIn)
+            {
+                return null;
+            }
+
+            var maxIndex = FindMaxIndex(inorder, startIn, endIn);
+            var left = SpecialWithInNodeGreaterThanKids(inorder, startIn, maxIndex - 1);
+            var right = SpecialWithInNodeGreaterThanKids(inorder, maxIndex + 1, endIn);
+
+            return new TreeNodes<int>(inorder[maxIndex], left, right);
+        }
+
+        private int FindMaxIndex(int [] arr, int start, int end)
+        {
+            var max = int.MinValue;
+            var maxIndex = -1;
+            for(var i = start; i <= end; i++)
+            {
+                if (arr[i] > max)
+                {
+                    max = arr[i];
+                    maxIndex = i;
+                }
+            }
+
+            return maxIndex;
+        }
+
         private int Search(int[] arr, int start, int end, int element)
         {
             var i = start;
-            for (i = start; i < end; i++)
+            for (i = start; i <= end; i++)
             {
                 if (arr[i] == element)
                 {

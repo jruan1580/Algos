@@ -128,10 +128,10 @@ namespace Trees
             //var postOrder = new int[] { 8, 9, 4, 5, 2, 6, 7, 3, 1 };
             //var preOrder = new int[] { 1, 2, 4, 5, 3, 6, 7 };
             //var mirrored = new int[] { 1, 3, 7, 6, 2, 5, 4 };
-            var preorder = new int[] { 10, 20, 40, 70, 80, 50, 30, 60 };
-            var preorderNl = new char[] { 'N', 'N', 'N', 'L', 'L', 'L', 'N', 'L' };
+            //var preorder = new int[] { 10, 20, 40, 70, 80, 50, 30, 60 };
+            //var preorderNl = new char[] { 'N', 'N', 'N', 'L', 'L', 'L', 'N', 'L' };
             //var head = new ListNode<int>(10, new ListNode<int>(12, new ListNode<int>(15, new ListNode<int>(25, new ListNode<int>(30, new ListNode<int>(36, null))))));
-
+            var inorderSpecial = new int[] { 1, 5, 10, 40, 30, 15, 28, 20 };
             var traversal = new Traversals();
             //traversal.PrintPostGivenInAndPre(inOrd, preOrder, 0, inOrd.Length - 1, 0);
             var construct = new Construction();
@@ -152,9 +152,11 @@ namespace Trees
 
             //var root = construct.ConstructFullBaseOnPreAndPost(postOrder, preOrder, 0, postOrder.Length - 1, 0, preOrder.Length - 1);
             //var root = construct.ConstructTreeByPreAndMirror(preOrder, mirrored, 0, preOrder.Length - 1, 0, mirrored.Length - 1);
-            var index = 0;
-            var root = construct.ConstructSpecialTreeGivenPreNL(preorder, preorderNl, ref index);
-            traversal.PreOrderTraversalIterative(root);
+            //var index = 0;
+            //var root = construct.ConstructSpecialTreeGivenPreNL(preorder, preorderNl, ref index);
+            var root = construct.SpecialWithInNodeGreaterThanKids(inorderSpecial, 0, inorderSpecial.Length - 1);
+            traversal.InOrderTraversalIterative(root);
+            
         }
     }
 }
