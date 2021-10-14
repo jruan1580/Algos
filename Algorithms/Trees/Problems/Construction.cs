@@ -21,6 +21,19 @@ namespace Trees.Problems
             var currNode = new TreeNodes<int>(inorder[rootIndex], leftTreeNode, rightTreeNode);
             return currNode;
         }
+        public TreeNodes<int> ConstructTreeWithPostAndIn(int [] inorder, int[] postorder, int startIn, int endIn, int endPost)
+        {
+            if (startIn > endIn)
+            {
+                return null;
+            }
+
+            var rootIndex = Search(inorder, startIn, endIn, postorder[endPost]);
+            var left = ConstructTreeWithPostAndIn(inorder, postorder, startIn, rootIndex - 1, endPost - 1 - (endIn - rootIndex));
+            var right = ConstructTreeWithPostAndIn(inorder, postorder, rootIndex + 1, endIn, endPost - 1);
+
+            return new TreeNodes<int>(inorder[rootIndex], left, right);
+        }
 
         public TreeNodes<int> ConstructTreeWithInAndLevel(int[] inorder, int[] levelorder, int startIn, int endIn)
         {
@@ -223,6 +236,112 @@ namespace Trees.Problems
             var right = SpecialWithInNodeGreaterThanKids(inorder, maxIndex + 1, endIn);
 
             return new TreeNodes<int>(inorder[maxIndex], left, right);
+        }
+
+        public TreeNodes<int> ConstructBaseOnArrayIndex(int [] arr)
+        {
+            //add all indexes to dictionary
+            var tracker = new Dictionary<int, List<int>>();
+            for(var i = 0; i < arr.Length; i++)
+            {
+                if (tracker.ContainsKey(arr[i]))
+                {
+                    tracker[arr[i]].Add(i);
+                }
+                else
+                {
+                    tracker.Add(arr[i], new List<int>() { i });
+                }
+            }
+
+            if (!tracker.ContainsKey(-1))
+            {
+                return null;
+            }
+
+            var queue = new Queue<TreeNodes<int>>();
+            var rootIndex = tracker[-1][0]; //should contain only one -1
+            var root = new TreeNodes<int>(rootIndex, null, null);
+            queue.Enqueue(root);
+            while (queue.Count > 0)
+            {                
+                var parentNode = queue.Dequeue();
+                var key = parentNode.Data;
+                if (!tracker.ContainsKey(key))
+                {
+                    continue;
+                }
+
+                var childIndexes = tracker[key];
+
+                var left = new TreeNodes<int>(childIndexes[0], null, null);
+                parentNode.Left = left;
+                queue.Enqueue(left);
+
+                //if right
+                if (childIndexes.Count > 1)
+                {
+                    var right = new TreeNodes<int>(childIndexes[1], null, null);
+                    parentNode.Right = right;
+                    queue.Enqueue(right);
+                }
+            }
+
+            return root;
+        }
+
+        public int ConvertTreeToSumTree(TreeNodes<int> root)
+        {
+            if(root == null)
+            {
+                return 0;
+            }
+
+            var left = ConvertTreeToSumTree(root.Left);
+            var right = ConvertTreeToSumTree(root.Right);
+
+            var tmp = root.Data + left + right;
+            root.Data = left + right;
+
+            return tmp;
+        }
+
+        public int ConvertTreeToLeftSum(TreeNodes<int> root)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+
+            if (root.Left == null && root.Right == null)
+            {
+                return root.Data;
+            }
+
+            // Update left and right subtrees
+            var leftsum = ConvertTreeToLeftSum(root.Left);
+            var rightsum = ConvertTreeToLeftSum(root.Right);
+
+            root.Data += leftsum;
+            return root.Data + rightsum;
+
+        }
+
+        public TreeNodes<int> ConvertToMirrorTree(TreeNodes<int> root)
+        {
+            //leaf node
+            if (root.Left == null && root.Right == null)
+            {
+                return root;
+            }
+
+            var left = ConvertToMirrorTree(root.Left);
+            var right = ConvertToMirrorTree(root.Right);
+
+            root.Left = right;
+            root.Right = left;
+
+            return root;
         }
 
         private int FindMaxIndex(int [] arr, int start, int end)

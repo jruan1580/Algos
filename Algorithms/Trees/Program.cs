@@ -131,7 +131,11 @@ namespace Trees
             //var preorder = new int[] { 10, 20, 40, 70, 80, 50, 30, 60 };
             //var preorderNl = new char[] { 'N', 'N', 'N', 'L', 'L', 'L', 'N', 'L' };
             //var head = new ListNode<int>(10, new ListNode<int>(12, new ListNode<int>(15, new ListNode<int>(25, new ListNode<int>(30, new ListNode<int>(36, null))))));
-            var inorderSpecial = new int[] { 1, 5, 10, 40, 30, 15, 28, 20 };
+            //var inorderSpecial = new int[] { 1, 5, 10, 40, 30, 15, 28, 20 };
+            //var arr = new int[] { 1, 5, 5, 2, 2, -1, 3 };
+
+            //var inorder = new int[] { 4, 8, 2, 5, 1, 6, 3, 7 };
+            //var postorder = new int[] { 8, 4, 5, 2, 6, 7, 3, 1 };
             var traversal = new Traversals();
             //traversal.PrintPostGivenInAndPre(inOrd, preOrder, 0, inOrd.Length - 1, 0);
             var construct = new Construction();
@@ -154,7 +158,19 @@ namespace Trees
             //var root = construct.ConstructTreeByPreAndMirror(preOrder, mirrored, 0, preOrder.Length - 1, 0, mirrored.Length - 1);
             //var index = 0;
             //var root = construct.ConstructSpecialTreeGivenPreNL(preorder, preorderNl, ref index);
-            var root = construct.SpecialWithInNodeGreaterThanKids(inorderSpecial, 0, inorderSpecial.Length - 1);
+            //var root = construct.SpecialWithInNodeGreaterThanKids(inorderSpecial, 0, inorderSpecial.Length - 1);
+            //var root = construct.ConstructTreeWithPostAndIn(inorder, postorder, 0, inorder.Length - 1, postorder.Length - 1);
+
+            var root = new TreeNodes<int>(10, null, null);
+            root.Left = new TreeNodes<int>(-2, null, null);
+            root.Right = new TreeNodes<int>(6, null, null);
+            root.Left.Left = new TreeNodes<int>(8, null, null);
+            root.Left.Right = new TreeNodes<int>(-4, null, null);
+            root.Right.Left = new TreeNodes<int>(7, null, null);
+            root.Right.Right = new TreeNodes<int>(5, null, null);
+
+            construct.ConvertToMirrorTree(root);
+
             traversal.InOrderTraversalIterative(root);
             
         }
