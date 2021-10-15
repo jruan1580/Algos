@@ -342,6 +342,43 @@ namespace Trees.Problems
             root.Right = left;
 
             return root;
+        }        
+
+        public int MinimumSwapForBst(int[] arr)
+        {
+            var inorder = new List<int>();
+
+            FindInorderBst(arr, inorder, 0);
+
+            var minSwap = 0;
+            //now we compare and swap
+            for (var i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] == inorder[i])
+                {
+                    continue;
+                }
+
+                var indexOf = inorder.IndexOf(arr[i]);
+                var tmp = inorder[i];
+                inorder[i] = inorder[indexOf];
+                inorder[indexOf] = tmp;
+                minSwap += 1;
+            }
+
+            return minSwap;
+        }
+
+        private void FindInorderBst(int [] arr, List<int> inorder, int index)
+        {
+            if (index >= arr.Length)
+            {
+                return;
+            }
+
+            FindInorderBst(arr, inorder, (2 * index) + 1);
+            inorder.Add(arr[index]);
+            FindInorderBst(arr, inorder, (2 * index) + 2);
         }
 
         private int FindMaxIndex(int [] arr, int start, int end)

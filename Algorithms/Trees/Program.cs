@@ -136,9 +136,9 @@ namespace Trees
 
             //var inorder = new int[] { 4, 8, 2, 5, 1, 6, 3, 7 };
             //var postorder = new int[] { 8, 4, 5, 2, 6, 7, 3, 1 };
-            var traversal = new Traversals();
+            //var traversal = new Traversals();
             //traversal.PrintPostGivenInAndPre(inOrd, preOrder, 0, inOrd.Length - 1, 0);
-            var construct = new Construction();
+            //var construct = new Construction();
             //var root = construct.ConstructTreeWithInAndPre(inOrd, preOrder, 0, inOrd.Length - 1, 0);
             //var root = construct.ConstructTreeWithInAndLevel(inorder, levelorder, 0, inorder.Length - 1);
             //var root = construct.ConstructCompleteTreeWithList(head);
@@ -161,18 +161,58 @@ namespace Trees
             //var root = construct.SpecialWithInNodeGreaterThanKids(inorderSpecial, 0, inorderSpecial.Length - 1);
             //var root = construct.ConstructTreeWithPostAndIn(inorder, postorder, 0, inorder.Length - 1, postorder.Length - 1);
 
-            var root = new TreeNodes<int>(10, null, null);
-            root.Left = new TreeNodes<int>(-2, null, null);
-            root.Right = new TreeNodes<int>(6, null, null);
-            root.Left.Left = new TreeNodes<int>(8, null, null);
-            root.Left.Right = new TreeNodes<int>(-4, null, null);
-            root.Right.Left = new TreeNodes<int>(7, null, null);
-            root.Right.Right = new TreeNodes<int>(5, null, null);
+            //var root = new TreeNodes<int>(10, null, null);
+            //root.Left = new TreeNodes<int>(-2, null, null);
+            //root.Right = new TreeNodes<int>(6, null, null);
+            //root.Left.Left = new TreeNodes<int>(8, null, null);
+            //root.Left.Right = new TreeNodes<int>(-4, null, null);
+            //root.Right.Left = new TreeNodes<int>(7, null, null);
+            //root.Right.Right = new TreeNodes<int>(5, null, null);
 
-            construct.ConvertToMirrorTree(root);
+            //construct.ConvertToMirrorTree(root);
 
-            traversal.InOrderTraversalIterative(root);
-            
+            //traversal.InOrderTraversalIterative(root);
+
+            //var arr = new int[] { 1,2,3 };
+            //Console.WriteLine(construct.MinimumSwapForBst(arr));
+
+            //var root = new TreeNodes<int>(6, null, null);
+            //root.Left = new TreeNodes<int>(3, null, null);
+            //root.Right = new TreeNodes<int>(5, null, null);
+            //root.Left.Left = new TreeNodes<int>(7, null, null);
+            //root.Left.Right = new TreeNodes<int>(8, null, null);
+            //root.Right.Left = new TreeNodes<int>(1, null, null);
+            //root.Right.Right = new TreeNodes<int>(3, null, null);
+
+            var root1 = new TreeNodes<int>(1, null, null);
+            root1.Left = new TreeNodes<int>(2, null, null);
+            root1.Right = new TreeNodes<int>(3, null, null);
+            root1.Left.Left = new TreeNodes<int>(4, null, null);
+            root1.Right.Left = new TreeNodes<int>(6, null, null);
+            root1.Right.Right = new TreeNodes<int>(7, null, null);
+
+            var root2 = new TreeNodes<int>(0, null, null);
+            root2.Left = new TreeNodes<int>(5, null, null);
+            root2.Right = new TreeNodes<int>(8, null, null);
+            root2.Left.Right = new TreeNodes<int>(4, null, null);
+            root2.Right.Left = new TreeNodes<int>(6, null, null);
+            root2.Right.Right = new TreeNodes<int>(7, null, null);
+
+
+            var checkAndPrint = new CheckAndPrint();
+            //Console.WriteLine(checkAndPrint.AreCousins(root, root.Left.Left, root.Right.Left));
+            //Console.WriteLine(checkAndPrint.AreCousins(root, root.Left, root.Right));
+            //Console.WriteLine(checkAndPrint.AreCousins(root, root.Left, root.Right));
+            //var leafLevel = 0;
+            //Console.WriteLine(checkAndPrint.AreLeavesOnSameLevel(root, 0, ref leafLevel));
+
+            //var level = new int[] { 30, 56, 22, 49, 30, 51, 2, 67 };
+            //var level2 = new int[] { 10, 15, 14, 25, 30 };
+
+            //Console.WriteLine(checkAndPrint.IsMinHeapGivenLevel(level));
+            //Console.WriteLine(checkAndPrint.IsMinHeapGivenLevel(level2));
+
+            Console.WriteLine(checkAndPrint.HasSameLeafTraversal(root1, root2));
         }
     }
 }
