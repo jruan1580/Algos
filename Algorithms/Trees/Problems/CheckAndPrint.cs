@@ -194,6 +194,250 @@ namespace Trees.Problems
             return true;
         }
 
+        public bool IsPerfectTree(TreeNodes<int> root, int level, int depth)
+        {
+            if (root == null)
+            {
+                return true;
+            }
+
+            //not perfect since found node without 2 children
+            if ((root.Left != null && root.Right == null) || (root.Left == null && root.Right != null))
+            {
+                return false;
+            }
+
+            //leaf node, check level and depth
+            if (root.Left == null && root.Right == null)
+            {
+                return (depth == level);
+            }
+
+            return (IsPerfectTree(root.Left, level + 1, depth) && IsPerfectTree(root.Right, level + 1, depth));
+        }
+
+        public bool IsFullBinaryTree(TreeNodes<int> root)
+        {
+            if ((root == null) || (root.Left == null && root.Right == null))
+            {
+                return true;
+            }
+
+            if ((root.Left != null && root.Right == null) || (root.Left == null && root.Right != null))
+            {
+                return false;
+            }
+
+            return IsFullBinaryTree(root.Left) && IsFullBinaryTree(root.Right);
+        }
+
+        public bool IsFullBinaryTreeIterative(TreeNodes<int> root)
+        {
+            if (root == null || (root.Left == null && root.Right == null))
+            {
+                return true;
+            }
+
+            var stack = new Stack<TreeNodes<int>>();
+            var curr = root;
+
+            //in order traversal to check all nodes.
+            while (curr != null || stack.Count > 0)
+            {
+                if (curr != null)
+                {
+                    //check if it has 2 children
+                    if ((curr.Left != null && curr.Right == null) || (curr.Left == null && curr.Right != null))
+                    {
+                        return false;
+                    }
+
+                    //push into stack and go left
+                    stack.Push(curr);
+                    curr = curr.Left;
+                }
+                else
+                {
+                    curr = stack.Pop();
+                    curr = curr.Right; //go right
+                }
+            }
+
+            return true;
+        }
+
+        public bool IsCompleteIterative(TreeNodes<int> root)
+        {
+            if (root == null)
+            {
+                return true;
+            }
+
+            var queue = new Queue<TreeNodes<int>>();
+            queue.Enqueue(root);
+            var encounteredNonFull = false;
+
+            while(queue.Count > 0)
+            {
+                var node = queue.Dequeue();
+                //if left is null and right is not, already not complete
+                if (node.Left == null && node.Right != null)
+                {
+                    return false;
+                }
+
+                //already encountered non full node, rest must be leaf
+                if (encounteredNonFull && (node.Left != null || node.Right != null))
+                {
+                    return false;
+                }
+
+                if (node.Left != null)
+                {
+                    queue.Enqueue(node.Left);
+                }
+                else
+                {
+                    encounteredNonFull = true;                    
+                }
+              
+                if (node.Right != null)
+                {
+                    queue.Enqueue(node.Right);
+                }
+                else
+                {
+                    encounteredNonFull = true;
+                }               
+            }
+
+            return true;
+        }    
+
+        public bool IsSubTree(TreeNodes<int> root1, TreeNodes<int> root2)
+        {          
+            //finish traversing tree 2 and see it is part of bigger tree 1
+            if (root2 == null && root1 != null)
+            {
+                return true;
+            }
+
+            //subtree bigger than base tree
+            if (root1 == null && root2 != null)
+            {
+                return false;
+            }
+
+            //check at current node to see if identical
+            if (AreIdentical(root1, root2))
+            {
+                return true;
+            }
+
+            return IsSubTree(root1.Left, root2) || IsSubTree(root1.Right, root2);
+        }
+
+        public bool HasDuplicates(TreeNodes<int> root)
+        {
+            var tracker = new HashSet<int>();
+
+            var stack = new Stack<TreeNodes<int>>();
+            var curr = root;
+
+            while (curr != null || stack.Count > 0)
+            {
+                if (curr != null)
+                {
+                    if (tracker.Contains(curr.Data))
+                    {
+                        return false;
+                    }
+
+                    tracker.Add(curr.Data);
+                    curr = curr.Left;
+                }
+                else
+                {
+                    curr = stack.Pop();
+                    curr = curr.Right;
+                }
+            }
+
+            return true;
+        }
+
+        public string HasDuplicateSubtreeOfSizeTwoOrMore(TreeNodes<int> root, HashSet<string> subtreeHash)
+        {
+            if (root == null)
+            {
+                return "$";
+            }
+
+            var leftStr = HasDuplicateSubtreeOfSizeTwoOrMore(root.Left, subtreeHash);
+            if (leftStr == string.Empty)
+            {
+                return string.Empty;
+            }
+
+            var rightStr = HasDuplicateSubtreeOfSizeTwoOrMore(root.Right, subtreeHash);
+            if (rightStr == string.Empty)
+            {
+                return string.Empty;
+            }
+
+            var str = root.Data + leftStr + rightStr;
+            if (subtreeHash.Contains(str) && str.Length > 3)
+            {
+                return string.Empty;
+            }
+
+            subtreeHash.Add(str);
+            return str;
+        }
+
+        public bool IsIdentical(TreeNodes<int> root1, TreeNodes<int> root2)
+        {
+            if (root1 == null && root2 == null)
+            {
+                return true;
+            }
+
+            if ((root1 != null && root2 == null) || (root1 == null && root2 != null) || (root1.Data != root2.Data))
+            {
+                return false;
+            }
+     
+            return IsIdentical(root1.Left, root2.Left) && IsIdentical(root1.Right, root2.Right);
+        }
+
+        public int FindLeftmostDepth(TreeNodes<int> root) 
+        {
+            var d = 0;
+            var node = root;
+            while (node != null)
+            {
+                d++;
+                node = node.Left;
+            }
+
+            return d;
+        }
+
+        private bool AreIdentical(TreeNodes<int> root1, TreeNodes<int> root2)
+        {
+            if (root1 == null && root2 == null)
+            {
+                return true;
+            }
+
+            if (root1 == null || root2 == null)
+            {
+                return false;
+            }
+
+            return (root1.Data == root2.Data && AreIdentical(root1.Left, root2.Left) && AreIdentical(root1.Right, root2.Right));
+        }
+
         private bool AreSiblings(TreeNodes<int> root, TreeNodes<int> sibling1, TreeNodes<int> sibling2)
         {
             if (root == null || (root.Left == null && root.Right == null))

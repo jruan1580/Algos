@@ -188,15 +188,16 @@ namespace Trees
             root1.Left = new TreeNodes<int>(2, null, null);
             root1.Right = new TreeNodes<int>(3, null, null);
             root1.Left.Left = new TreeNodes<int>(4, null, null);
+            root1.Left.Right = new TreeNodes<int>(5, null, null);
             root1.Right.Left = new TreeNodes<int>(6, null, null);
             root1.Right.Right = new TreeNodes<int>(7, null, null);
 
-            var root2 = new TreeNodes<int>(0, null, null);
-            root2.Left = new TreeNodes<int>(5, null, null);
-            root2.Right = new TreeNodes<int>(8, null, null);
-            root2.Left.Right = new TreeNodes<int>(4, null, null);
-            root2.Right.Left = new TreeNodes<int>(6, null, null);
-            root2.Right.Right = new TreeNodes<int>(7, null, null);
+            //var root2 = new TreeNodes<int>(0, null, null);
+            //root2.Left = new TreeNodes<int>(5, null, null);
+            //root2.Right = new TreeNodes<int>(8, null, null);
+            //root2.Left.Right = new TreeNodes<int>(4, null, null);
+            //root2.Right.Left = new TreeNodes<int>(6, null, null);
+            //root2.Right.Right = new TreeNodes<int>(7, null, null);
 
 
             var checkAndPrint = new CheckAndPrint();
@@ -212,7 +213,8 @@ namespace Trees
             //Console.WriteLine(checkAndPrint.IsMinHeapGivenLevel(level));
             //Console.WriteLine(checkAndPrint.IsMinHeapGivenLevel(level2));
 
-            Console.WriteLine(checkAndPrint.HasSameLeafTraversal(root1, root2));
+            //var depth = checkAndPrint.FindLeftmostDepth(root1);
+            Console.WriteLine(checkAndPrint.IsCompleteIterative(root1));
         }
     }
 }
