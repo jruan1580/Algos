@@ -329,7 +329,7 @@ namespace Trees.Problems
             }
 
             //check at current node to see if identical
-            if (AreIdentical(root1, root2))
+            if (IsIdentical(root1, root2))
             {
                 return true;
             }
@@ -395,6 +395,72 @@ namespace Trees.Problems
             return str;
         }
 
+        public bool TwoTreesAreMirror(TreeNodes<int> root1, TreeNodes<int> root2)
+        {
+            if (root1 == null && root2 == null)
+            {
+                return true;
+            }
+
+            if ((root1 != null && root2 == null) || (root1 == null && root2 != null))
+            {
+                return false;
+            }
+
+            return root1.Data == root2.Data && TwoTreesAreMirror(root1.Left, root2.Right) && TwoTreesAreMirror(root1.Right, root2.Left);
+        }
+
+        public bool TwoTreesAreMirrorIterative(TreeNodes<int> root1, TreeNodes<int> root2)
+        {
+            if (root1 == null && root2 == null)
+            {
+                return true;
+            }
+
+            if ((root1 != null && root2 == null) || (root1 == null && root2 != null))
+            {
+                return false;
+            }
+
+            var stack1 = new Stack<TreeNodes<int>>();
+            var stack2 = new Stack<TreeNodes<int>>();
+
+            var curr1 = root1;
+            var curr2 = root2;
+
+            while ((curr1 != null && curr2 != null) || (stack1.Count > 0 && stack2.Count > 0))
+            {
+                if ((curr1 == null && curr2 != null) || (curr1 != null && curr2 == null))
+                {
+                    return false;
+                }
+                    
+                if (curr1 != null && curr2 != null)
+                {
+                    if (curr1.Data != curr2.Data)
+                    {
+                        return false;
+                    }
+
+                    stack1.Push(curr1);
+                    curr1 = curr1.Left;
+
+                    stack2.Push(curr2);
+                    curr2 = curr2.Right;                    
+                }
+                else
+                {
+                    curr1 = stack1.Pop();
+                    curr1 = curr1.Right;
+
+                    curr2 = stack2.Pop();
+                    curr2 = curr2.Left;
+                }             
+            }
+
+            return true;
+        }
+
         public bool IsIdentical(TreeNodes<int> root1, TreeNodes<int> root2)
         {
             if (root1 == null && root2 == null)
@@ -410,6 +476,161 @@ namespace Trees.Problems
             return IsIdentical(root1.Left, root2.Left) && IsIdentical(root1.Right, root2.Right);
         }
 
+        public bool IsIdenticalIterative(TreeNodes<int> root1, TreeNodes<int> root2)
+        {
+            var stack1 = new Stack<TreeNodes<int>>();
+            var stack2 = new Stack<TreeNodes<int>>();
+
+            stack1.Push(root1);
+            stack2.Push(root2);
+
+            while (stack1.Count > 0 && stack2.Count > 0)
+            {
+                var n1 = stack1.Pop();
+                var n2 = stack2.Pop();
+
+                if (n1.Data != n2.Data)
+                {
+                    return false;
+                }
+
+                if ((n1.Right != null && n2.Right == null) || (n1.Right == null && n2.Right != null))
+                {
+                    return false;
+                }
+
+                if (n1.Right != null && n2.Right != null)
+                {
+                    stack1.Push(n1.Right);
+                    stack2.Push(n2.Right);
+                }
+
+                if ((n1.Left != null && n2.Left == null) || (n1.Left == null && n2.Left != null))
+                {
+                    return false;
+                }
+
+                if (n1.Left != null && n2.Left != null)
+                {
+                    stack1.Push(n1.Left);
+                    stack2.Push(n2.Left);
+                }               
+            }
+
+            return true;
+        }
+
+        public bool IsSymmetrical(TreeNodes<int> root)
+        {
+            return TwoTreesAreMirror(root, root);
+        }
+
+        public bool IsSymmetricalIterative(TreeNodes<int> root)
+        {
+            if (root == null)
+            {
+                return true;
+            }
+
+            var queue = new Queue<TreeNodes<int>>();
+            queue.Enqueue(root.Left);
+            queue.Enqueue(root.Right);
+
+            while(queue.Count > 0)
+            {
+                var left = queue.Dequeue();
+                var right = queue.Dequeue();
+
+                if (left == null && right == null)
+                {
+                    continue;
+                }
+
+                if ((left == null && right != null) || (left != null && right == null) || (left.Data != right.Data))
+                {
+                    return false;
+                }
+
+                queue.Enqueue(left.Left);
+                queue.Enqueue(right.Right);
+                queue.Enqueue(left.Right);
+                queue.Enqueue(right.Left);
+            }
+
+            return true;
+        }
+
+        public bool ContainsSequence(TreeNodes<int> root, int [] arr, int index)
+        {
+            //reach end before we finish traversing sequence
+            if (root == null && index < arr.Length)
+            {
+                return false;
+            }
+
+            if (root.Data != arr[index])
+            {
+                return false;
+            }
+
+            //end of sequence
+            if (index == arr.Length - 1)
+            {
+
+                //not a leaf node
+                if (root.Left != null || root.Right != null)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+            return (root.Data == arr[index] && (ContainsSequence(root.Left, arr, index + 1) || ContainsSequence(root.Right, arr, index + 1)));
+        }
+
+        public void PrintMiddleWithoutHeight(TreeNodes<int> slow, TreeNodes<int> fast)
+        {
+            if (slow == null || fast == null)
+            {
+                return;
+            }
+
+            if (fast.Left == null && fast.Right == null)
+            {
+                Console.Write(slow.Data + " ");
+                return;
+            }
+
+            if (fast.Left.Left != null)
+            {
+                PrintMiddleWithoutHeight(slow.Left, fast.Left.Left);
+                PrintMiddleWithoutHeight(slow.Right, fast.Left.Left);
+            }
+            else
+            {
+                PrintMiddleWithoutHeight(slow.Left, fast.Left);
+                PrintMiddleWithoutHeight(slow.Right, fast.Left);
+            }
+        }
+
+        public void PrintAllCousinsOfANode(TreeNodes<int> root, TreeNodes<int> node)
+        {
+            var level = 1;
+            var queue = new Queue<TreeNodes<int>>();
+            var levelOrder = new Dictionary<int, List<TreeNodes<int>>>();
+
+            queue.Enqueue(root);
+            while(queue.Count > 0)
+            {
+                var n = queue.Dequeue();
+                if (n == null)
+                {
+                    continue;
+                }
+            }
+        }
+
         public int FindLeftmostDepth(TreeNodes<int> root) 
         {
             var d = 0;
@@ -421,22 +642,7 @@ namespace Trees.Problems
             }
 
             return d;
-        }
-
-        private bool AreIdentical(TreeNodes<int> root1, TreeNodes<int> root2)
-        {
-            if (root1 == null && root2 == null)
-            {
-                return true;
-            }
-
-            if (root1 == null || root2 == null)
-            {
-                return false;
-            }
-
-            return (root1.Data == root2.Data && AreIdentical(root1.Left, root2.Left) && AreIdentical(root1.Right, root2.Right));
-        }
+        }      
 
         private bool AreSiblings(TreeNodes<int> root, TreeNodes<int> sibling1, TreeNodes<int> sibling2)
         {
