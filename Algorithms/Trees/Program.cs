@@ -184,13 +184,13 @@ namespace Trees
             //root.Right.Left = new TreeNodes<int>(1, null, null);
             //root.Right.Right = new TreeNodes<int>(3, null, null);
 
-            var root1 = new TreeNodes<int>(5, null, null);
-            root1.Left = new TreeNodes<int>(2, null, null);
-            root1.Right = new TreeNodes<int>(3, null, null);
-            root1.Left.Left = new TreeNodes<int>(1, null, null);
-            root1.Left.Right = new TreeNodes<int>(4, null, null);
-            root1.Left.Right.Left = new TreeNodes<int>(6, null, null);
-            root1.Left.Right.Right = new TreeNodes<int>(8, null, null);
+            //var root1 = new TreeNodes<int>(5, null, null);
+            //root1.Left = new TreeNodes<int>(2, null, null);
+            //root1.Right = new TreeNodes<int>(3, null, null);
+            //root1.Left.Left = new TreeNodes<int>(1, null, null);
+            //root1.Left.Right = new TreeNodes<int>(4, null, null);
+            //root1.Left.Right.Left = new TreeNodes<int>(6, null, null);
+            //root1.Left.Right.Right = new TreeNodes<int>(8, null, null);
             //root1.Right.Left = new TreeNodes<int>(4, null, null);
             //root1.Right.Right = new TreeNodes<int>(3, null, null);
 
@@ -203,7 +203,7 @@ namespace Trees
             //root2.Right.Right = new TreeNodes<int>(4, null, null);
 
 
-            var checkAndPrint = new CheckAndPrint();
+            //var checkAndPrint = new CheckAndPrint();
             //Console.WriteLine(checkAndPrint.AreCousins(root, root.Left.Left, root.Right.Left));
             //Console.WriteLine(checkAndPrint.AreCousins(root, root.Left, root.Right));
             //Console.WriteLine(checkAndPrint.AreCousins(root, root.Left, root.Right));
@@ -217,7 +217,29 @@ namespace Trees
             //Console.WriteLine(checkAndPrint.IsMinHeapGivenLevel(level2));
 
             //var depth = checkAndPrint.FindLeftmostDepth(root1);
-            Console.WriteLine(checkAndPrint.ContainsSequence(root1, new int[] { 5, 2, 4 }, 0));
+            //Console.WriteLine(checkAndPrint.FindMaxDepth(root1));
+            //var maxDepth = checkAndPrint.FindMaxDepth(root1);
+            //var longestFound = false;
+            //checkAndPrint.PrintRootToLeavePathsIterative(root1);
+
+
+            var root = new TreeNodes<int>(1, null, null);
+            root.Left = new TreeNodes<int>(-2, null, null);
+            root.Right = new TreeNodes<int>(3, null, null);
+            root.Left.Left = new TreeNodes<int>(4, null, null);
+            root.Left.Right = new TreeNodes<int>(5, null, null);            
+            root.Right.Left = new TreeNodes<int>(-6, null, null);
+            root.Right.Right = new TreeNodes<int>(2, null, null);
+
+            var sum = new Summation();
+            //Console.WriteLine(sum.SumOfAllRightLeaf(root));
+            //var maxDepth = new CheckAndPrint().FindMaxDepth(root);
+            //Console.WriteLine(sum.SumOfLongestRootToLeafPath(root, maxDepth, new List<int>()));
+
+            //var allPaths = new List<List<int>>();
+            var maxSum = 0;
+            sum.LargestSubtreeSum(root, ref maxSum);
+            Console.WriteLine(maxSum);
         }
     }
 }

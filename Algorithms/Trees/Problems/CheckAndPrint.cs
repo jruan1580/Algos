@@ -614,20 +614,147 @@ namespace Trees.Problems
             }
         }
 
-        public void PrintAllCousinsOfANode(TreeNodes<int> root, TreeNodes<int> node)
+        public void PrintRootToLeavePaths(TreeNodes<int> root, List<int> path, int index)
         {
-            var level = 1;
-            var queue = new Queue<TreeNodes<int>>();
-            var levelOrder = new Dictionary<int, List<TreeNodes<int>>>();
-
-            queue.Enqueue(root);
-            while(queue.Count > 0)
+            if (root == null)
             {
-                var n = queue.Dequeue();
+                return;
+            }
+
+            //leaf
+            if (root.Left == null && root.Right == null)
+            {
+                
+                for(var i = 0; i < index; i++)
+                {
+                    Console.Write(path[i] + " ");
+                }
+
+                Console.Write(root.Data);
+                Console.Write("\n");
+                return;
+            }
+
+            path.Insert(index, root.Data);
+
+            if (root.Left != null)
+            {
+                PrintRootToLeavePaths(root.Left, path, index+1);
+            }
+
+            if (root.Right != null)
+            {
+                PrintRootToLeavePaths(root.Right, path, index+1);
+            }
+        }
+
+        public void PrintRootToLeavePathsIterative(TreeNodes<int> root)
+        {
+            var parent = new Dictionary<TreeNodes<int>, TreeNodes<int>>();
+
+            var stack = new Stack<TreeNodes<int>>();
+            stack.Push(root);
+            parent.Add(root, null); //parent to root is null
+
+            while(stack.Count > 0)
+            {
+                var n = stack.Pop();
                 if (n == null)
                 {
                     continue;
                 }
+
+                //is leaf node
+                if (n.Left == null && n.Right == null)
+                {
+                    PrintParentToLeave(n, parent);
+                    Console.Write("\n");
+                }
+
+                if (n.Right != null)
+                {
+                    parent.Add(n.Right, n);
+                    stack.Push(n.Right);
+                }
+
+                if (n.Left != null)
+                {
+                    parent.Add(n.Left, n);
+                    stack.Push(n.Left);
+                }
+            }
+        }
+
+        public void PrintLongestPathRootToLeaf(TreeNodes<int> root, List<int> path, int index, int maxDepth, ref bool longestPathFound)
+        {
+            if (root == null || longestPathFound)
+            {
+                return;
+            }
+            
+            //is leaf node
+            if (root.Left == null && root.Right == null)
+            {
+                //check if path so far is equal to depth
+                if (index + 1 != maxDepth) 
+                {
+                    return;
+                }
+
+                //found longest path, print and set longestPathFound to true
+                for(var i = 0; i < index; i++)
+                {
+                    Console.Write(path[i] + " ");
+                }
+
+                Console.Write(root.Data);
+                Console.Write("\n");
+                longestPathFound = true;
+                return;
+            }
+
+            path.Insert(index, root.Data);
+
+            if (root.Left != null)
+            {
+                PrintLongestPathRootToLeaf(root.Left, path, index + 1, maxDepth, ref longestPathFound);
+            }
+
+            if (root.Right != null)
+            {
+                PrintLongestPathRootToLeaf(root.Right, path, index + 1, maxDepth, ref longestPathFound);
+            }
+        }
+
+        public void PrintRootToNodePath(TreeNodes<int> root, TreeNodes<int> node, List<int> path, int index)
+        {
+            if (root == null)
+            {
+                return;
+            }
+
+            if (root == node)
+            {
+                for(var i = 0; i < index; i++)
+                {
+                    Console.Write(path[i] + " ");
+                }
+
+                Console.Write(root.Data);
+                Console.Write("\n");
+                return;
+            }
+
+            path.Insert(index, root.Data);
+
+            if (root.Left != null)
+            {
+                PrintRootToNodePath(root.Left, node, path, index + 1);
+            }
+
+            if (root.Right != null)
+            {
+                PrintRootToNodePath(root.Right, node, path, index + 1);
             }
         }
 
@@ -643,6 +770,19 @@ namespace Trees.Problems
 
             return d;
         }      
+
+        public int FindMaxDepth(TreeNodes<int> root)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+
+            var leftDepth = FindMaxDepth(root.Left);
+            var rightDepth = FindMaxDepth(root.Right);
+
+            return Math.Max(1 + leftDepth, 1 + rightDepth);
+        }
 
         private bool AreSiblings(TreeNodes<int> root, TreeNodes<int> sibling1, TreeNodes<int> sibling2)
         {
@@ -667,6 +807,22 @@ namespace Trees.Problems
             }
 
             return Sum(root.Left) + Sum(root.Right) + root.Data;
+        }
+
+        private void PrintParentToLeave(TreeNodes<int> leaf, Dictionary<TreeNodes<int>, TreeNodes<int>> parent)
+        {
+            var curr = leaf;
+            var stack = new Stack<int>();
+            while (curr != null)
+            {
+                stack.Push(curr.Data);
+                curr = parent[curr]; //get current nodes parent
+            }
+
+            while (stack.Count > 0)
+            {
+                Console.Write(stack.Pop() + " ");
+            }
         }
     }
 }
