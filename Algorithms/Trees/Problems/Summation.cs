@@ -280,6 +280,188 @@ namespace Trees.Problems
             return root.Data + left + right;
         }
 
+        public void PrintAllPathWithKSum(TreeNodes<int> root, List<int> path, int k)
+        {
+            if (root == null)
+            {
+                return;
+            }
+
+            path.Add(root.Data);
+
+            PrintAllPathWithKSum(root.Left, path, k);
+
+            PrintAllPathWithKSum(root.Right, path, k);
+
+            var sum = 0;
+            for(var i = path.Count - 1; i >= 0; i++)
+            {
+                sum += path[i];
+                if (sum == k)
+                {
+                    //print from i to end
+                    for(var j = i; j < path.Count; j++)
+                    {
+                        Console.Write(path[j] + " ");
+                    }
+                    Console.Write("\n");
+                }
+            }
+
+            path.RemoveAt(path.Count - 1);
+        }
+
+        public int SumOfIndividualNodeHeight(TreeNodes<int> root, ref int sum)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+
+            var lh = SumOfIndividualNodeHeight(root.Left, ref sum);
+            var rh = SumOfIndividualNodeHeight(root.Right, ref sum);
+
+            var currHeight = Math.Max(lh, rh) + 1;
+
+            sum += lh + rh + currHeight;
+
+            return currHeight;
+        }
+
+        public int SubTreeWithGivenSum(TreeNodes<int> root, int sum, ref bool sumFound)
+        {           
+            if (root == null)
+            {                
+                return 0;
+            }
+
+            var leftSubTreeSum = SubTreeWithGivenSum(root.Left, sum, ref sumFound);
+            var rightSubTreeSum = SubTreeWithGivenSum(root.Right, sum, ref sumFound);
+
+            var currSum = leftSubTreeSum + rightSubTreeSum + root.Data;
+
+            if (currSum == sum)
+            {
+                sumFound = true;
+            }
+
+            return currSum;
+        }
+
+        public int CountSubTreeWithGivenSum(TreeNodes<int> root, int sum, ref int count)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+
+            var leftSubTreeSum = CountSubTreeWithGivenSum(root.Left, sum, ref count);
+            var rightSubTreeSum = CountSubTreeWithGivenSum(root.Right, sum, ref count);
+
+            var currSum = leftSubTreeSum + rightSubTreeSum + root.Data;
+
+            if (currSum == sum)
+            {
+                count++;
+            }
+
+            return currSum;
+        }
+
+        public void SumAtMaxLevel(TreeNodes<int> root, int level, ref int maxLevel, ref int sum)
+        {
+            if (root == null)
+            {
+                return;
+            }
+
+            if (level > maxLevel)
+            {
+                maxLevel = level;
+                sum = root.Data;
+            }
+
+            if (level == maxLevel)
+            {
+                sum += root.Data;
+            }
+
+            SumAtMaxLevel(root.Left, level + 1, ref maxLevel, ref sum);
+            SumAtMaxLevel(root.Right, level + 1, ref maxLevel, ref sum);
+        }
+
+        public int DiffInEvenAndOddLevelSum(TreeNodes<int> root)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+
+            return Math.Abs(SumAlternateLevels(root) - (SumAlternateLevels(root.Left) + SumAlternateLevels(root.Right)));
+        }
+
+        public TreeNodes<int> MergeTwoTreeWithNodeSum(TreeNodes<int> root1, TreeNodes<int> root2)
+        {
+            if (root1 == null && root2 == null)
+            {
+                return null;
+            }
+
+            TreeNodes<int> currNode = null;
+            if (root1 != null && root2 == null)
+            {
+                var leftRoot = MergeTwoTreeWithNodeSum(root1.Left, null);
+                var rightRoot = MergeTwoTreeWithNodeSum(root1.Right, null);
+                currNode = new TreeNodes<int>(root1.Data, leftRoot, rightRoot);
+            }
+            else if (root1 == null && root2 != null)
+            {
+                var leftRoot = MergeTwoTreeWithNodeSum(null, root2.Left);
+                var rightRoot = MergeTwoTreeWithNodeSum(null, root2.Right);
+                currNode = new TreeNodes<int>(root2.Data, leftRoot, rightRoot);
+            }
+            else
+            {
+                var leftRoot = MergeTwoTreeWithNodeSum(root1.Left, root2.Left);
+                var rightRoot = MergeTwoTreeWithNodeSum(root1.Right, root2.Right);
+                currNode = new TreeNodes<int>(root1.Data + root2.Data, leftRoot, rightRoot);
+            }           
+           
+            return currNode;
+        }
+
+        public void PrintVerticalSums(TreeNodes<int> root)
+        {
+            var tracker = new Dictionary<int, List<TreeNodes<int>>>();
+
+            GetVerticalPath(root, tracker, 0);
+
+            foreach(var verticalNode in tracker)
+            {
+                var vertLevel = verticalNode.Key;
+                var sum = 0;
+                
+                foreach (var node in verticalNode.Value)
+                {
+                    sum += node.Data;
+                }
+                Console.WriteLine($"level {vertLevel} - {sum}");
+            }
+        }
+
+        public int FindRootGivenChildIdSum(Dictionary<int, int> pairIdChildSum)
+        {
+            var childSum = 0;
+            var idSum = 0;
+            foreach(var pair in pairIdChildSum)
+            {
+                idSum += pair.Key;
+                childSum += pair.Value;
+            }
+
+            return idSum - childSum;
+        }
+
         public void GetAllPaths(TreeNodes<int> root, List<int> currPath, List<List<int>> allPaths)
         {
             if (root == null)
@@ -312,6 +494,26 @@ namespace Trees.Problems
                 currPath.RemoveAt(currPath.Count - 1); //remove last again
             }
             
+        }
+
+        private void GetVerticalPath(TreeNodes<int> root, Dictionary<int, List<TreeNodes<int>>> tracker, int vertical)
+        {
+            if (root == null)
+            {
+                return;
+            }
+
+            if (tracker.ContainsKey(vertical))
+            {
+                tracker[vertical].Add(root);
+            }
+            else
+            {
+                tracker.Add(vertical, new List<TreeNodes<int>>() { root });
+            }
+
+            GetVerticalPath(root.Left, tracker, vertical - 1);
+            GetVerticalPath(root.Right, tracker, vertical + 1);            
         }
     }
 }

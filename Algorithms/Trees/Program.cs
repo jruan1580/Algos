@@ -224,12 +224,24 @@ namespace Trees
 
 
             var root = new TreeNodes<int>(1, null, null);
-            root.Left = new TreeNodes<int>(-2, null, null);
+            root.Left = new TreeNodes<int>(2, null, null);
             root.Right = new TreeNodes<int>(3, null, null);
             root.Left.Left = new TreeNodes<int>(4, null, null);
-            root.Left.Right = new TreeNodes<int>(5, null, null);            
-            root.Right.Left = new TreeNodes<int>(-6, null, null);
-            root.Right.Right = new TreeNodes<int>(2, null, null);
+            root.Left.Right = new TreeNodes<int>(5, null, null);
+            root.Right.Left = new TreeNodes<int>(6, null, null);
+            root.Right.Right = new TreeNodes<int>(7, null, null);
+
+            //var root1 = new TreeNodes<int>(2, null, null);
+            //root1.Left = new TreeNodes<int>(1, null, null);
+            //root1.Right = new TreeNodes<int>(4, null, null);
+            //root1.Left.Left = new TreeNodes<int>(5, null, null);
+            //root1.Left.Left.Left = new TreeNodes<int>(5, null, null);
+
+            //var root2 = new TreeNodes<int>(3, null, null);
+            //root2.Left = new TreeNodes<int>(6, null, null);
+            //root2.Right = new TreeNodes<int>(1, null, null);
+            //root2.Left.Right = new TreeNodes<int>(2, null, null);
+            //root2.Right.Right = new TreeNodes<int>(7, null, null);
 
             var sum = new Summation();
             //Console.WriteLine(sum.SumOfAllRightLeaf(root));
@@ -237,9 +249,16 @@ namespace Trees
             //Console.WriteLine(sum.SumOfLongestRootToLeafPath(root, maxDepth, new List<int>()));
 
             //var allPaths = new List<List<int>>();
-            var maxSum = 0;
-            sum.LargestSubtreeSum(root, ref maxSum);
-            Console.WriteLine(maxSum);
+            //var maxSum = 0;
+            //sum.LargestSubtreeSum(root, ref maxSum);
+            //Console.WriteLine(maxSum);
+            //var count = 0;
+            //sum.CountSubTreeWithGivenSum(root, 17, ref count);
+            //Console.WriteLine(count);
+
+            //var mergedRoot = sum.MergeTwoTreeWithNodeSum(root1, root2);
+            //new Traversals().InOrderTraversalIterative(mergedRoot);
+            sum.PrintVerticalSums(root);
         }
     }
 }
