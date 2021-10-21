@@ -223,13 +223,13 @@ namespace Trees
             //checkAndPrint.PrintRootToLeavePathsIterative(root1);
 
 
-            var root = new TreeNodes<int>(1, null, null);
-            root.Left = new TreeNodes<int>(2, null, null);
-            root.Right = new TreeNodes<int>(3, null, null);
-            root.Left.Left = new TreeNodes<int>(4, null, null);
-            root.Left.Right = new TreeNodes<int>(5, null, null);
-            root.Right.Left = new TreeNodes<int>(6, null, null);
-            root.Right.Right = new TreeNodes<int>(7, null, null);
+            //var root = new TreeNodes<int>(1, null, null);
+            //root.Left = new TreeNodes<int>(2, null, null);
+            //root.Right = new TreeNodes<int>(3, null, null);
+            //root.Left.Left = new TreeNodes<int>(4, null, null);
+            //root.Left.Right = new TreeNodes<int>(5, null, null);
+            //root.Right.Left = new TreeNodes<int>(6, null, null);
+            //root.Right.Right = new TreeNodes<int>(7, null, null);
 
             //var root1 = new TreeNodes<int>(2, null, null);
             //root1.Left = new TreeNodes<int>(1, null, null);
@@ -243,7 +243,7 @@ namespace Trees
             //root2.Left.Right = new TreeNodes<int>(2, null, null);
             //root2.Right.Right = new TreeNodes<int>(7, null, null);
 
-            var sum = new Summation();
+            //var sum = new Summation();
             //Console.WriteLine(sum.SumOfAllRightLeaf(root));
             //var maxDepth = new CheckAndPrint().FindMaxDepth(root);
             //Console.WriteLine(sum.SumOfLongestRootToLeafPath(root, maxDepth, new List<int>()));
@@ -258,7 +258,21 @@ namespace Trees
 
             //var mergedRoot = sum.MergeTwoTreeWithNodeSum(root1, root2);
             //new Traversals().InOrderTraversalIterative(mergedRoot);
-            sum.PrintVerticalSums(root);
+            //sum.PrintVerticalSums(root);
+
+            var root = new TreeNodes<int>(1, null, null);
+            root.Left = new TreeNodes<int>(2, null, null);
+            root.Right = new TreeNodes<int>(3, null, null);
+            root.Left.Left = new TreeNodes<int>(4, null, null);
+            root.Left.Right = new TreeNodes<int>(5, null, null);
+            root.Right.Left = new TreeNodes<int>(6, null, null);
+            root.Right.Right = new TreeNodes<int>(7, null, null);
+            root.Left.Left.Left = new TreeNodes<int>(8, null, null);
+            root.Right.Left.Left = new TreeNodes<int>(9, null, null);
+            root.Right.Left.Right = new TreeNodes<int>(10, null, null);
+
+            var lca = new LCA();
+            lca.PrintCommonNodes(root, root.Right.Left.Left, root.Right.Right);
         }
     }
 }
