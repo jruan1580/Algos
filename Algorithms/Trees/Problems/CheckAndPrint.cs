@@ -757,6 +757,161 @@ namespace Trees.Problems
                 PrintRootToNodePath(root.Right, node, path, index + 1);
             }
         }
+        
+        public TreeNodes<int> FindMirrorNodeOfTarget(TreeNodes<int> target, TreeNodes<int> left, TreeNodes<int> right)
+        {            
+            if (left == null || right == null)
+            {
+                return null;
+            }
+
+            if (left == target)
+            {
+                return right;
+            }
+
+            if (right == target)
+            {
+                return left;
+            }
+
+            //check outer 
+            var mirrorNode = FindMirrorNodeOfTarget(target, left.Left, right.Right);
+            //was found
+            if (mirrorNode != null)
+            {
+                return mirrorNode;
+            }
+
+            //check inner
+            return FindMirrorNodeOfTarget(target, left.Right, right.Left);
+        }
+
+        public bool GetSinglyNodeSubtreeCount(TreeNodes<int> root, ref int count)
+        {
+            if (root == null)
+            {
+                return true;
+            }
+
+            var isSinglyLeft = GetSinglyNodeSubtreeCount(root.Left, ref count);
+            var isSinglyRight = GetSinglyNodeSubtreeCount(root.Right, ref count);
+
+            if (isSinglyLeft == false || isSinglyRight == false)
+            {
+                return false;
+            }
+
+            //check left data and current node same if left exists
+            if (root.Left != null && root.Left.Data != root.Data)
+            {
+                return false;
+            }
+
+            if (root.Right != null && root.Right.Data != root.Data)
+            {
+                return false;
+            }
+
+            count += 1; //inc subtree count
+            return true;
+        }
+
+        public List<TreeNodes<int>> FindRootOfLargestIdenticalSub(TreeNodes<int> root, TreeNodes<int> largestRoot)
+        {
+            if (root == null)
+            {
+                return new List<TreeNodes<int>>();
+            }
+
+            var leftChilds = FindRootOfLargestIdenticalSub(root.Left, largestRoot);
+            var rightChilds = FindRootOfLargestIdenticalSub(root.Right, largestRoot);
+
+            var currNodeList = new List<TreeNodes<int>>();
+            currNodeList.AddRange(leftChilds);
+            currNodeList.Add(root);
+            currNodeList.AddRange(rightChilds);
+            
+            //not identical since not equal amount of nodes
+            if (leftChilds.Count != rightChilds.Count)
+            {
+                return currNodeList;
+            }
+
+            //check each node and position
+            for(var i = 0; i < leftChilds.Count; i++)
+            {
+                //not same
+                if (leftChilds[i].Data != rightChilds[i].Data)
+                {
+                    return currNodeList;
+                }
+            }
+
+            largestRoot = root; //set largest root to current
+            return currNodeList;
+        }
+
+        public int FindClosestLeafToNode(TreeNodes<int> root, TreeNodes<int> n)
+        {
+            var minDistToLeaf = int.MaxValue;
+            //node is a leaf
+            if (n.Left == null && n.Right == null)
+            {
+                return 0;
+            }
+
+            //node is root
+            if (root == n)
+            {
+                return FindMinDepth(root); //min depth of tree is the dist
+            }
+            
+            //find whether node is in left or right subtree
+            if (NodeExists(root.Left, n))
+            {
+                //if left subtree, find min depth to root of right subtree
+                //plus one to include depth of left to root
+                var rightMinDepth = FindMinDepth(root.Right) + 1;
+                //find distance from root to node oh left side
+                var distToNode = FindDistanceFromNodeAToNodeB(root.Left, n) + 1;
+                var rightLeafToNodeDist = rightMinDepth + distToNode;
+                //find min depth from node
+                var minDepthFromNode = FindMinDepth(n);
+                minDistToLeaf = Math.Min(rightLeafToNodeDist, minDepthFromNode);
+            }
+            else if (NodeExists(root.Right, n))
+            {
+                //if right subtree, find min depth to root of left subtree
+                var leftMinDepth = FindMinDepth(root.Left) + 1;
+                //find distance from root to node oh right side
+                var distToNode = FindDistanceFromNodeAToNodeB(root.Right, n) + 1;
+                var leftLeafToNodeDist = leftMinDepth + distToNode;
+                var minDepthFromNode = FindMinDepth(n);
+                minDistToLeaf = Math.Min(leftLeafToNodeDist, minDepthFromNode);
+            }
+            else
+            {
+                return int.MaxValue;//node does not exist
+            }
+
+            return minDistToLeaf;
+        }
+
+        public bool NodeExists(TreeNodes<int> root, TreeNodes<int> n)
+        {
+            if (root == null)
+            {
+                return false;
+            }
+
+            if (root == n)
+            {
+                return true;
+            }
+
+            return NodeExists(root.Left, n) || NodeExists(root.Right, n);
+        }
 
         public int FindLeftmostDepth(TreeNodes<int> root) 
         {
@@ -782,6 +937,47 @@ namespace Trees.Problems
             var rightDepth = FindMaxDepth(root.Right);
 
             return Math.Max(1 + leftDepth, 1 + rightDepth);
+        }
+
+        public int FindMinDepth(TreeNodes<int> root)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+
+            if (root.Left == null && root.Right == null)
+            {
+                return 0;
+            }
+
+            var leftDepth = FindMinDepth(root.Left);
+            var rightDepth = FindMinDepth(root.Right);
+
+            return 1 + Math.Min(leftDepth, rightDepth);
+        }
+
+        public int FindDistanceFromNodeAToNodeB(TreeNodes<int> a, TreeNodes<int> b)
+        {
+            if (a == b)
+            {
+                return -1;
+            }
+
+            if (a == b)
+            {
+                return 0;
+            }
+
+            var leftDistance = FindDistanceFromNodeAToNodeB(a.Left, b);
+            var rightDistance = FindDistanceFromNodeAToNodeB(a.Right, b);
+           
+            if (leftDistance == -1 && rightDistance == -1)
+            {
+                return -1;
+            }
+
+            return (leftDistance != -1) ? 1 + leftDistance : 1 + rightDistance;
         }
 
         private bool AreSiblings(TreeNodes<int> root, TreeNodes<int> sibling1, TreeNodes<int> sibling2)
