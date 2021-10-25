@@ -28,7 +28,7 @@ namespace Trees.Problems
             if (root.Left == null && root.Right != null)
             {
                 isChildSumRoot = (root.Data == root.Right.Data);
-            }           
+            }
 
             return isChildSumRoot && IsChildSumTree(root.Left) && IsChildSumTree(root.Right);
         }
@@ -54,10 +54,10 @@ namespace Trees.Problems
 
             var cousin1Level = -1;
             var cousin2Level = -1;
-            foreach(var level in levelOrder)
+            foreach (var level in levelOrder)
             {
                 var nodes = level.Value;
-                foreach(var node in nodes)
+                foreach (var node in nodes)
                 {
                     if (node != cousin1 && node != cousin2)
                     {
@@ -106,12 +106,12 @@ namespace Trees.Problems
                 return (level == leafLevel); //check if other leaves are same level as first leaf
             }
 
-            return AreLeavesOnSameLevel(root.Left, level +1, ref leafLevel) && AreLeavesOnSameLevel(root.Right, level + 1, ref leafLevel);
+            return AreLeavesOnSameLevel(root.Left, level + 1, ref leafLevel) && AreLeavesOnSameLevel(root.Right, level + 1, ref leafLevel);
         }
 
-        public bool IsMinHeapGivenLevel(int [] level)
+        public bool IsMinHeapGivenLevel(int[] level)
         {
-            for(var i = 0; i < level.Length; i++)
+            for (var i = 0; i < level.Length; i++)
             {
                 var root = level[i];
                 //no left child, break
@@ -124,7 +124,7 @@ namespace Trees.Problems
                 var rightChild = int.MinValue;
 
                 //has right child
-                if ((2*i) + 2 < level.Length)
+                if ((2 * i) + 2 < level.Length)
                 {
                     rightChild = level[(2 * i) + 2];
                 }
@@ -146,7 +146,7 @@ namespace Trees.Problems
             stack1.Push(root1);
             stack2.Push(root2);
 
-            while(stack1.Count > 0 || stack2.Count > 0)
+            while (stack1.Count > 0 || stack2.Count > 0)
             {
                 //one of the stacks have extra leaves if other is empty
                 if (stack1.Count == 0 || stack2.Count == 0)
@@ -155,7 +155,7 @@ namespace Trees.Problems
                 }
 
                 var tmp1 = stack1.Pop();
-                while(tmp1 != null && (tmp1.Left != null || tmp1.Right != null))
+                while (tmp1 != null && (tmp1.Left != null || tmp1.Right != null))
                 {
                     if (tmp1.Right != null)
                     {
@@ -185,7 +185,7 @@ namespace Trees.Problems
 
                     tmp2 = stack2.Pop();
                 }
-                
+
                 if ((tmp1 == null && tmp2 != null) || (tmp1 != null && tmp2 == null) || (tmp1 != null && tmp2 != null && tmp1.Data != tmp2.Data))
                 {
                     return false;
@@ -277,7 +277,7 @@ namespace Trees.Problems
             queue.Enqueue(root);
             var encounteredNonFull = false;
 
-            while(queue.Count > 0)
+            while (queue.Count > 0)
             {
                 var node = queue.Dequeue();
                 //if left is null and right is not, already not complete
@@ -298,9 +298,9 @@ namespace Trees.Problems
                 }
                 else
                 {
-                    encounteredNonFull = true;                    
+                    encounteredNonFull = true;
                 }
-              
+
                 if (node.Right != null)
                 {
                     queue.Enqueue(node.Right);
@@ -308,14 +308,14 @@ namespace Trees.Problems
                 else
                 {
                     encounteredNonFull = true;
-                }               
+                }
             }
 
             return true;
-        }    
+        }
 
         public bool IsSubTree(TreeNodes<int> root1, TreeNodes<int> root2)
-        {          
+        {
             //finish traversing tree 2 and see it is part of bigger tree 1
             if (root2 == null && root1 != null)
             {
@@ -434,7 +434,7 @@ namespace Trees.Problems
                 {
                     return false;
                 }
-                    
+
                 if (curr1 != null && curr2 != null)
                 {
                     if (curr1.Data != curr2.Data)
@@ -446,7 +446,7 @@ namespace Trees.Problems
                     curr1 = curr1.Left;
 
                     stack2.Push(curr2);
-                    curr2 = curr2.Right;                    
+                    curr2 = curr2.Right;
                 }
                 else
                 {
@@ -455,7 +455,7 @@ namespace Trees.Problems
 
                     curr2 = stack2.Pop();
                     curr2 = curr2.Left;
-                }             
+                }
             }
 
             return true;
@@ -472,7 +472,7 @@ namespace Trees.Problems
             {
                 return false;
             }
-     
+
             return IsIdentical(root1.Left, root2.Left) && IsIdentical(root1.Right, root2.Right);
         }
 
@@ -514,7 +514,7 @@ namespace Trees.Problems
                 {
                     stack1.Push(n1.Left);
                     stack2.Push(n2.Left);
-                }               
+                }
             }
 
             return true;
@@ -536,7 +536,7 @@ namespace Trees.Problems
             queue.Enqueue(root.Left);
             queue.Enqueue(root.Right);
 
-            while(queue.Count > 0)
+            while (queue.Count > 0)
             {
                 var left = queue.Dequeue();
                 var right = queue.Dequeue();
@@ -560,7 +560,7 @@ namespace Trees.Problems
             return true;
         }
 
-        public bool ContainsSequence(TreeNodes<int> root, int [] arr, int index)
+        public bool ContainsSequence(TreeNodes<int> root, int[] arr, int index)
         {
             //reach end before we finish traversing sequence
             if (root == null && index < arr.Length)
@@ -624,8 +624,8 @@ namespace Trees.Problems
             //leaf
             if (root.Left == null && root.Right == null)
             {
-                
-                for(var i = 0; i < index; i++)
+
+                for (var i = 0; i < index; i++)
                 {
                     Console.Write(path[i] + " ");
                 }
@@ -639,12 +639,12 @@ namespace Trees.Problems
 
             if (root.Left != null)
             {
-                PrintRootToLeavePaths(root.Left, path, index+1);
+                PrintRootToLeavePaths(root.Left, path, index + 1);
             }
 
             if (root.Right != null)
             {
-                PrintRootToLeavePaths(root.Right, path, index+1);
+                PrintRootToLeavePaths(root.Right, path, index + 1);
             }
         }
 
@@ -656,7 +656,7 @@ namespace Trees.Problems
             stack.Push(root);
             parent.Add(root, null); //parent to root is null
 
-            while(stack.Count > 0)
+            while (stack.Count > 0)
             {
                 var n = stack.Pop();
                 if (n == null)
@@ -691,18 +691,18 @@ namespace Trees.Problems
             {
                 return;
             }
-            
+
             //is leaf node
             if (root.Left == null && root.Right == null)
             {
                 //check if path so far is equal to depth
-                if (index + 1 != maxDepth) 
+                if (index + 1 != maxDepth)
                 {
                     return;
                 }
 
                 //found longest path, print and set longestPathFound to true
-                for(var i = 0; i < index; i++)
+                for (var i = 0; i < index; i++)
                 {
                     Console.Write(path[i] + " ");
                 }
@@ -735,7 +735,7 @@ namespace Trees.Problems
 
             if (root == node)
             {
-                for(var i = 0; i < index; i++)
+                for (var i = 0; i < index; i++)
                 {
                     Console.Write(path[i] + " ");
                 }
@@ -757,9 +757,9 @@ namespace Trees.Problems
                 PrintRootToNodePath(root.Right, node, path, index + 1);
             }
         }
-        
+
         public TreeNodes<int> FindMirrorNodeOfTarget(TreeNodes<int> target, TreeNodes<int> left, TreeNodes<int> right)
-        {            
+        {
             if (left == null || right == null)
             {
                 return null;
@@ -831,7 +831,7 @@ namespace Trees.Problems
             currNodeList.AddRange(leftChilds);
             currNodeList.Add(root);
             currNodeList.AddRange(rightChilds);
-            
+
             //not identical since not equal amount of nodes
             if (leftChilds.Count != rightChilds.Count)
             {
@@ -839,7 +839,7 @@ namespace Trees.Problems
             }
 
             //check each node and position
-            for(var i = 0; i < leftChilds.Count; i++)
+            for (var i = 0; i < leftChilds.Count; i++)
             {
                 //not same
                 if (leftChilds[i].Data != rightChilds[i].Data)
@@ -866,7 +866,7 @@ namespace Trees.Problems
             {
                 return FindMinDepth(root); //min depth of tree is the dist
             }
-            
+
             //find whether node is in left or right subtree
             if (NodeExists(root.Left, n))
             {
@@ -896,6 +896,211 @@ namespace Trees.Problems
             }
 
             return minDistToLeaf;
+        }
+
+        public void MaximumDistinctNodeInRootToLeave(TreeNodes<int> root, HashSet<int> unique, ref int max)
+        {
+            if (root == null)
+            {
+                return;
+            }
+
+            //leaf
+            if (root.Left == null && root.Right == null)
+            {
+                if (!unique.Contains(root.Data))
+                {
+                    unique.Add(root.Data);
+                }
+
+                max = Math.Max(max, unique.Count);
+
+                //remove last one
+                unique.Remove(root.Data);
+                return;
+            }
+
+            //not leaf, add only if hashset dont contain it
+            if (!unique.Contains(root.Data))
+            {
+                unique.Add(root.Data);
+            }
+
+            MaximumDistinctNodeInRootToLeave(root.Left, unique, ref max);
+            MaximumDistinctNodeInRootToLeave(root.Right, unique, ref max);
+
+            unique.Remove(root.Data);
+        }
+
+        public int MaxConsecutiveLength(TreeNodes<int> root, int prev_val, int prev_max)
+        {
+            if (root == null)
+            {
+                return prev_max;
+            }
+
+            if (root.Data == prev_val + 1)
+            {
+                return Math.Max(MaxConsecutiveLength(root.Left, root.Data, prev_max + 1), MaxConsecutiveLength(root.Right, root.Data, prev_max + 1));    
+            }
+
+            var newLen = Math.Max(MaxConsecutiveLength(root.Left, root.Data, 1), MaxConsecutiveLength(root.Right, root.Data, 1));
+
+            return Math.Max(prev_max, newLen);
+        }
+
+        public int LongestPathOfSameVal(TreeNodes<int> root, ref int max)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+
+            var leftLen = LongestPathOfSameVal(root.Left, ref max);
+            var rightLen = LongestPathOfSameVal(root.Right, ref max);
+
+            if (root.Left != null && root.Left.Data == root.Data)
+            {
+                leftLen += 1;
+            }
+
+            if (root.Right != null && root.Right.Data == root.Data)
+            {
+                rightLen += 1;
+            }
+
+            max = Math.Max(max, leftLen + rightLen);
+            
+            //if we dont have a match with either children
+            if ((root.Left != null && root.Left.Data != root.Data) && (root.Right != null && root.Right.Data != root.Data))
+            {
+                return 0; //reset longest path
+            }
+            
+            //only left match, return leftLen
+            if ((root.Left != null && root.Left.Data == root.Data) && (root.Right == null || root.Right.Data != root.Data))
+            {
+                return leftLen;
+            }
+
+            //only right match
+            if ((root.Left == null || root.Left.Data != root.Data) && (root.Right != null && root.Right.Data == root.Data))
+            {
+                return rightLen;
+            }
+
+            //both left and right match, return longest one between the two.
+            return Math.Max(leftLen, rightLen);
+        }
+
+        public TreeNodes<int> RemoveNodeLessThanKLen(TreeNodes<int> root, int level, int k)
+        {
+            if (root == null)
+            {
+                return null;
+            }
+
+            var leftNode = RemoveNodeLessThanKLen(root.Left, level + 1, k);
+            var rightNode = RemoveNodeLessThanKLen(root.Right, level + 1, k);
+
+            root.Left = leftNode;
+            root.Right = rightNode;
+
+            //leaf node less than k length, remove
+            if (root.Left == null && root.Right == null && level < k)
+            {
+                return null;
+            }
+
+            return root;
+        }
+
+        public void FirstNonMatchingLeafNode(TreeNodes<int> root1, TreeNodes<int> root2)
+        {
+            if (root1 == null || root2 == null)
+            {
+                return;
+            }
+
+            var stack1 = new Stack<TreeNodes<int>>();
+            var stack2 = new Stack<TreeNodes<int>>();
+
+            stack1.Push(root1);
+            stack2.Push(root2);
+
+            while(stack1.Count > 0 || stack2.Count > 0)
+            {
+                if (stack1.Count == 0 || stack2.Count == 0)
+                {
+                    return;
+                }
+
+                var tmp1 = stack1.Pop();
+                while(tmp1 != null && !(tmp1.Left == null && tmp1.Right == null))
+                {
+                    if (tmp1.Right != null)
+                    {
+                        stack1.Push(tmp1.Right);
+                    }
+
+                    if (tmp1.Left != null)
+                    {
+                        stack1.Push(tmp1.Left);
+                    }
+
+                    tmp1 = stack1.Pop();
+                }
+
+                var tmp2 = stack2.Pop();
+                while(tmp2 != null && !(tmp2.Left == null && tmp2.Right == null))
+                {
+                    if (tmp2.Right != null)
+                    {
+                        stack2.Push(tmp2.Right);
+                    }
+
+                    if (tmp2.Left != null)
+                    {
+                        stack2.Push(tmp2.Left);
+                    }
+
+                    tmp2 = stack2.Pop();
+                }
+
+                if (tmp1 != null && tmp2 != null && tmp1.Data != tmp2.Data)
+                {
+                    Console.WriteLine(tmp1.Data + " " + tmp2.Data);
+                    return;
+                }
+            }
+        }
+
+        public TreeNodes<int> FindNextRight(TreeNodes<int> root, TreeNodes<int> n, int currLevel, ref int levelOfN)
+        {
+            if (root == null)
+            {
+                return null;
+            }
+
+            //found first element
+            if (n == root)
+            {
+                levelOfN = currLevel;
+                return null;
+            }
+
+            if (levelOfN != -1 && currLevel == levelOfN && root != n)
+            {
+                return root;
+            }
+
+            var foundNodeOnLeft = FindNextRight(root.Left, n, currLevel + 1, ref levelOfN);
+            if (foundNodeOnLeft != null)
+            {
+                return foundNodeOnLeft;
+            }
+
+            return FindNextRight(root.Right, n, currLevel + 1, ref levelOfN);
         }
 
         public bool NodeExists(TreeNodes<int> root, TreeNodes<int> n)
