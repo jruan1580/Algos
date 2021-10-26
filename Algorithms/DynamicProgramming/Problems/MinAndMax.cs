@@ -54,6 +54,24 @@ namespace DynamicProgramming.Problems
             return dp[n];
         }
 
+        public int CuttingRod(int len, int [] price)
+        {
+            var dp = new int[len + 1];
+            dp[0] = 0;
+            dp[1] = price[0];
+
+            for(var i = 2; i <= len; i++)
+            {
+                dp[i] = price[i - 1];
+                for(var j = 1; j <= i/2; j++)
+                {
+                    dp[i] = Math.Max(dp[i], Math.Max((price[j - 1] + price[i - j -1]), (price[j - 1] + dp[i - j])));
+                }
+            }
+
+            return dp[len];
+        }
+
         public int NumberOfStepsToReachNDistance(int n)
         {
             var dp = new int[n + 1];
