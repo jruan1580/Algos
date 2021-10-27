@@ -1,5 +1,6 @@
 ﻿using DynamicProgramming.Problems;
 using System;
+using System.Collections.Generic;
 
 namespace DynamicProgramming
 {
@@ -9,9 +10,9 @@ namespace DynamicProgramming
         {
             Console.WriteLine("Hello World!");
 
-            var maxAndMin = new MinAndMax();
-            var price = new int[] { 3, 5, 8, 9, 10, 17, 17, 20 };
-            Console.WriteLine(maxAndMin.CuttingRod(8, price));
+            //var maxAndMin = new MinAndMax();
+            //var price = new int[] { 3, 5, 8, 9, 10, 17, 17, 20 };
+            //Console.WriteLine(maxAndMin.CuttingRod(8, price));
 
             //var mat = new int[3, 3];
             //mat[0, 0] = 1;
@@ -26,6 +27,20 @@ namespace DynamicProgramming
 
             //var matrix = new MatrixPath();
             //Console.WriteLine(matrix.LongestMatrixPath(mat));
+
+            //var dictionary = new HashSet<string>
+            //{
+            //    "i", "like", "sam",
+            //    "sung", "samsung", "mobile",
+            //    "ice","cream", "icecream",
+            //    "man", "go", "mango"
+            //};
+
+            //var word = new WordBreak();
+            //Console.WriteLine(word.WordSplit("ilikesa", dictionary));
+
+            var dice = new DiceRoll();
+            Console.WriteLine(dice.NumOfWaysToGetSumGiveNDiceWithMFace(3, 2, 6));
         }
     }
 }
