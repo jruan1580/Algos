@@ -39,8 +39,29 @@ namespace DynamicProgramming
             //var word = new WordBreak();
             //Console.WriteLine(word.WordSplit("ilikesa", dictionary));
 
-            var dice = new DiceRoll();
-            Console.WriteLine(dice.NumOfWaysToGetSumGiveNDiceWithMFace(3, 2, 6));
+            //var dice = new DiceRoll();
+            //Console.WriteLine(dice.NumOfWaysToGetSumGiveNDiceWithMFace(3, 2, 6));
+
+            //var boxes = new List<Box>()
+            //{
+            //    new Box(4, 6, 7),
+            //    new Box(1, 2, 3),
+            //    new Box(4, 5, 6),
+            //    new Box(10, 12, 32)
+            //};
+
+            //var boxStack = new BoxStacking();
+            //Console.WriteLine(boxStack.FindMaxHeight(boxes));
+
+            //var eggDrop = new EggDropping();
+            //Console.WriteLine(eggDrop.MinimumEggDropToFindFloor(2, 36));
+
+            //var pairs = new Pair[2] { new Pair(6,8), new Pair(3,4)};
+            //var chain = new Chaining();
+            //Console.WriteLine(chain.LongestChain(pairs));
+
+            var str = new StringDp();
+            Console.WriteLine(str.LongestCommonSubstring("geeksforgeeks", "geeksquiz"));
         }
     }
 }
