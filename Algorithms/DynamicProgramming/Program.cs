@@ -60,8 +60,13 @@ namespace DynamicProgramming
             //var chain = new Chaining();
             //Console.WriteLine(chain.LongestChain(pairs));
 
-            var str = new StringDp();
-            Console.WriteLine(str.LongestCommonSubstring("geeksforgeeks", "geeksquiz"));
+            //var str = new StringDp();
+            //Console.WriteLine(str.LongestCommonSubstring("geeksforgeeks", "geeksquiz"));
+
+            var number = new Numbers();
+            var arr = new int[] { 10, 5, 4, 3 };
+
+            Console.WriteLine(number.MinimumSquareWhereSumIsN(6));
         }
     }
 }

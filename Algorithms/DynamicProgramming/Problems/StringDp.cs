@@ -32,5 +32,56 @@ namespace DynamicProgramming.Problems
 
             return result;
         }
+
+        public int NumberOfSubFormFittingFormatABC(string pattern)
+        {
+            var aCount = 0;
+            var bCount = 0;
+            var cCount = 0;
+
+            for(var i = 0; i < pattern.Length; i++)
+            {
+                if (pattern[i] == 'a')
+                {
+                    aCount = 1 + (2 * aCount);
+                }
+
+                if (pattern[i] == 'b')
+                {
+                    bCount = aCount + (2 * bCount);
+                }
+
+                if (pattern[i] == 'c')
+                {
+                    cCount = bCount + (2 * cCount);
+                }
+            }
+
+            return cCount;
+        }
+
+        public int PossibleDecoding(string str)
+        {
+            if (str.Length == 0 || str.Length == 1)
+            {
+                return 1;
+            }
+
+            var dp = new int[str.Length + 1];
+            dp[0] = 1;
+            dp[1] = 1;
+
+            for(var i = 2; i <= str.Length; i++)
+            {
+                dp[i] = dp[i - 1]; //take char by itself
+
+                if ((str[i - 2] == '1') || (str[i-2] == '2' && str[i-1] < '7'))
+                {
+                    dp[i] += dp[i - 2];
+                }
+            }
+
+            return dp[str.Length];
+        }
     }
 }
