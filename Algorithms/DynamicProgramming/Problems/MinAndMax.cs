@@ -98,5 +98,22 @@ namespace DynamicProgramming.Problems
 
             return dp[n];
         }
+
+        public int MinTaskTimeAllowingSkipButNotConsecutive(int [] taskTimes)
+        {
+            var inc = taskTimes[0]; //include the first one
+            var exc = 0; //exclude first one
+
+            for(var i = 1; i < taskTimes.Length; i++)
+            {
+                var tmp = inc;
+
+                inc = taskTimes[i] + Math.Min(inc, exc); //if we include curr time, we have choice between excluding last number result and including last number result. ofc take the smallest of the two
+
+                exc = tmp; //if we exclude curr time, only one choice, to include last number, there for assign best result from inclduing last number to exc
+            }
+
+            return Math.Min(inc, exc);
+        }
     }
 }

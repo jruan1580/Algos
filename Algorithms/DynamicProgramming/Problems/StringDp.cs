@@ -33,6 +33,34 @@ namespace DynamicProgramming.Problems
             return result;
         }
 
+        public int CountOfPalSubsequences(string str)
+        {
+            var dp = new int[str.Length, str.Length];
+
+            for(var i = 0; i < str.Length; i++)
+            {
+                dp[i, i] = 1;
+            }
+
+            for(var pl = 2; pl <= str.Length; pl++)
+            {
+                for(var i = 0; i < str.Length - pl + 1; i++)
+                {
+                    var j = pl + i - 1;
+                    if (str[i] == str[j])
+                    {
+                        dp[i, j] = 1 + dp[i + 1, j] + dp[i, j - 1];
+                    }
+                    else
+                    {
+                        dp[i, j] = (dp[i + 1, j] + dp[i, j - 1]) - dp[i + 1, j - 1];
+                    }
+                }
+            }
+
+            return dp[0, str.Length - 1];
+        }
+
         public int NumberOfSubFormFittingFormatABC(string pattern)
         {
             var aCount = 0;

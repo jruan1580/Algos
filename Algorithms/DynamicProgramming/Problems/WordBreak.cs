@@ -22,11 +22,7 @@ namespace DynamicProgramming.Problems
                 {
                     var col = row + sl - 1;
                     var currWord = str.Substring(row, (col - row) + 1);
-
-                    //if (currWord == "ilike")
-                    //{
-
-                    //}
+                    
                     if (dictionary.Contains(currWord))
                     {
                         dp[row, col] = true;
@@ -57,7 +53,65 @@ namespace DynamicProgramming.Problems
             return dp[0, str.Length - 1];
         }
 
-        private void PrintBoard(bool [,] board)
+        public void WordWrap(string sentence, int width)
+        {
+            var split = sentence.Split(" ");
+            var dp = new int[split.Length, split.Length];            
+
+            for(var i = 0; i < dp.GetLength(0); i++)
+            {
+                for(var j = i; j < dp.GetLength(1); j++)
+                {
+                    var sen = string.Join(' ', split, i, j - i + 1);
+                    if (sen.Length > width)
+                    {
+                        dp[i, j] = int.MaxValue;
+                    }
+                    else
+                    {
+                        var remaining = width - sen.Length;
+                        dp[i, j] = remaining * remaining; //square of it
+                    }
+                }
+            }
+
+            var minSpaces = new int[split.Length];            
+            var lineBreak = new int[split.Length];
+            for(var i = split.Length - 1; i >= 0; i--)
+            {                
+                minSpaces[i] = dp[i, split.Length - 1];
+                lineBreak[i] = split.Length;
+                for(var j = split.Length - 1; j < i; j--)
+                {
+                    if (dp[i, j - 1] == int.MaxValue)
+                    {
+                        continue;
+                    }
+
+                    if (minSpaces[j] + dp[i, j - 1] < minSpaces[i])
+                    {
+                        minSpaces[i] = minSpaces[j] + dp[i, j - 1];
+                        lineBreak[i] = j;
+                    }
+                }             
+            }
+
+            var start = 0;
+            var end = 0;
+            StringBuilder builder = new StringBuilder();
+            do
+            {
+                end = lineBreak[start];
+                for (int k = start; k < end; k++)
+                {
+                    builder.Append(split[k] + " ");
+                }
+                builder.Append("\n");
+                start = end;
+            } while (end < split.Length);
+        }
+
+        private void PrintBoard<T>(T [,] board)
         {
             for (var row = 0; row < board.GetLength(0); row++)
             {
@@ -68,9 +122,8 @@ namespace DynamicProgramming.Problems
                         Console.Write("  ");
                     }
                     else
-                    {
-                        var str = (board[row, col]) ? "T" : "F";
-                        Console.Write(str + " ");
+                    {                        
+                        Console.Write(board[row, col].ToString() + " ");
                     }
                     
                 }

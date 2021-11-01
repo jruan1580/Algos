@@ -63,10 +63,13 @@ namespace DynamicProgramming
             //var str = new StringDp();
             //Console.WriteLine(str.LongestCommonSubstring("geeksforgeeks", "geeksquiz"));
 
-            var number = new Numbers();
-            var arr = new int[] { 10, 5, 4, 3 };
+            //var number = new Numbers();
+            //var arr = new int[] { 10, 5, 4, 3 };
 
-            Console.WriteLine(number.MinimumSquareWhereSumIsN(6));
+            //Console.WriteLine(number.MinimumSquareWhereSumIsN(6));
+
+            var word = new WordBreak();
+            word.WordWrap("Tushar Roy likes to code", 10);
         }
     }
 }
